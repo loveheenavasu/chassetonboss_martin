@@ -1,0 +1,335 @@
+email,company,website,city,state,profession
+de@accountingedge.com,"Accounting Edge Inc",http://www.accountingedge.com,Abington,Pennsylvania,Accountant
+megan.newman@americanbar.org,"Chess Daniel L CPA",http://www.slcccpa.com,Uniontown,Pennsylvania,Accountant
+lisa@bluesteinmichael.com,"Bluestein Michael & Co.",http://www.bluesteinmichael.com,Jenkintown,Pennsylvania,Accountant
+info@just2much2do.com,"Deborah Werley Bookkeeping & Payroll",http://www.just2much2do.com,Glenside,Pennsylvania,Accountant
+runger@kuaccountants.com,"Krassenstein & Unger LLC",http://www.kuaccountants.com,Jenkintown,Pennsylvania,"Accounting firm"
+patrick@mchenrycocpas.com,"Mc Henry & Co PC",http://www.mchenrycocpas.com,"Willow Grove",Pennsylvania,Accountant
+jraymond@markspaneth.com,"Marks Paneth LLP",http://www.markspaneth.com,Jenkintown,Pennsylvania,"Accounting firm"
+steve@cppcpa.com,"Cunningham Porter & Phillips",http://cppcpa.com,Rydal,Pennsylvania,Accountant
+ken@thetaxdog.com,"Ken Davis CPA-The Taxdog",http://thetaxdog.com,"Elkins Park",Pennsylvania,Accountant
+info@cheriedegonllc.com,"Cherie Degon LLC",http://www.cheriedegonllc.com,Oreland,Pennsylvania,"Chartered accountant"
+info@sgcfunding.com,"Structured Growth Capital",http://www.sgcfunding.com,Jenkintown,Pennsylvania,Accountant
+info@berkowitzcpas.com,"Diane R. Sokalski CPA",http://www.berkowitzcpas.com,"Fort Washington",Pennsylvania,"Chartered accountant"
+kconner@atconnercpa.com,"Anita T Conner & Associates PC",http://atconnercpa.com,Jenkintown,Pennsylvania,"Tax preparation service"
+karenv@karenlvidtcpa.com,"Vidt Karen L CPA",http://karenlvidtcpa.com,Zelienople,Pennsylvania,Accountant
+bjkennelly@exler.com,"Exler & Company Inc.",http://www.exler.com,Pittsburgh,Pennsylvania,Accountant
+llucchi@ati-financial.com,"ATI Financial Svc LLC",http://www.ati-financial.com,Wexford,Pennsylvania,"Financial Advisor"
+shapiron@stifel.com,Stifel,http://www.stifel.com,Beaver,Pennsylvania,"Investment service"
+lauren@thepolishedledger.com,"Henderson Warren R CPA",http://www.thepolishedledger.com,Allentown,Pennsylvania,Accountant
+solutions@stoudtcpas.com,"Stoudt Associates LLC",http://www.stoudtcpas.com,Allentown,Pennsylvania,"Financial Advisor"
+bob@gtbp.org,"RJG Income Tax Services is CLOSED",http://tax.gtbp.org,Whitehall,Pennsylvania,Accountant
+danny@derghamandassociates.com,"Block Glenn CPA",http://derghamandassociates.com,Allentown,Pennsylvania,Accountant
+yogesh@pandyaconsulting.com,"Pandya Consulting LLC",http://www.pandyaconsulting.com,Allentown,Pennsylvania,Accounting
+jessicaf@lencpas.com,"Donald H. Elsenbaumer CPACr.FA",http://www.lencpas.com,Allentown,Pennsylvania,"Chartered accountant"
+information@ccaglecpa.com,"Charles A. Cagle CPA",http://ccaglecpa.com,Allentown,Pennsylvania,"Bookkeeping service"
+ctrinkle@kirksumma.com,"Kirk Summa & Co LLP",http://www.kirksumma.com,Allentown,Pennsylvania,"Tax preparation service"
+info@molinarioswald.com,"Michael Homa & Co",http://www.homacpa.com,Hellertown,Pennsylvania,Accountant
+hsembhi@hsbaccounting.com,"HSB Accounting LLC",http://hsbaccounting.com,Orefield,Pennsylvania,"Tax preparation service"
+dcs@cpa.com,"dcs Accounting & Tax Services",http://www.dcsmithcpa.com,Hellertown,Pennsylvania,Accountant
+david.grube@ceterafs.com,"Grube Financial Services",http://www.grubefinancial.com,Allentown,Pennsylvania,"Tax preparation service"
+bcolvin@mcphillipscpa.com,"McPhillips CPA & Company",http://mcphillipscpa.com,Coopersburg,Pennsylvania,"Tax preparation service"
+gbrauer@haffnercpa.com,"Haffner & Associates CPAs",http://www.haffnercpas.com,Macungie,Pennsylvania,Accountant
+info@bpasso.com,"B P & Associates PC",http://www.bpasso.com,Allentown,Pennsylvania,"Chartered accountant"
+jennifer.mccarthy@bakertilly.com,"Baker Tilly US LLP",http://www.bakertilly.com,Allentown,Pennsylvania,"Accounting firm"
+info@hillegassfinancial.com,"Bruce D. Hillegass CPA",http://www.hillegassfinancial.com,Macungie,Pennsylvania,"Financial Advisor"
+linda@lindarothcpa.com,"Linda M Roth CPA",http://lindarothcpa.com,Bath,Pennsylvania,"Accounting firm"
+randy.bochniak@ceterafs.com,"Randy S Bochniak CPA",http://www.bochniakfinancial.com,Quakertown,Pennsylvania,"Tax preparation service"
+rccpablc@atlanticbbn.net,"Reilly Creppage & Co: Cyran David A CPA",http://reillycreppage.com,Altoona,Pennsylvania,"Chartered accountant"
+info@graneytax.com,"Zero-Tax & Accounting Services",http://www.zero-tax.net,Pittsburgh,Pennsylvania,"Tax preparation"
+info@abstaxshelter.com,"Tax Shelter",http://www.abstaxshelter.com,Altoona,Pennsylvania,"Tax preparation service"
+info@prlinkcpa.com,"Link & Associates PC",http://www.prlinkcpa.com,Hollidaysburg,Pennsylvania,"Chartered accountant"
+kate.starkey@kooman.com,"Kooman & Associates LLC",http://www.kooman.com,Altoona,Pennsylvania,"Financial Advisor"
+perry.holcombe@raymondjames.com,"Irwin Financial Incorporated",http://raymondjames.com,Altoona,Pennsylvania,"Financial Advisor"
+info@lowcostpayroll.com,"Happy Tax",http://www.lowcostpayroll.com,Altoona,Pennsylvania,Accountants
+brian@mercadante-cpas.com,"Mercadante & Co",http://www.mercadante-cpas.com,Sewickley,Pennsylvania,Accountant
+bill@wjgrahamtax.com,"William J Graham Tax & Accounting",http://www.wjgrahamtax.com,Wexford,Pennsylvania,Accountant
+reliance@reliancecpa.com,"Reliance Accounting LLC",http://www.reliancecpa.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+bob.hagan@haganaccounting.com,"Hagan Accounting Group",http://www.haganaccounting.com,Pittsburgh,Pennsylvania,Accountant
+buzz@brosecpa.com,"B Rose",http://brosecpa.com,Pittsburgh,Pennsylvania,"Tax preparation service"
+mail@listwak.com,"Listwak Finke & Associates",http://www.listwak.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+kjarek@nottinghamgroup.com,"James S Fellin CPA",http://nottinghamgroup.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+gjeffrey@3kcpa.com,"Craig A Koryak CPA",http://www.3kcpa.com,Pittsburgh,Pennsylvania,Accountant
+info@gklauraycpa.com,"Gregory K Lauray & Co",http://www.gklauraycpa.com,Bethlehem,Pennsylvania,Accountant
+wayne.strader@stradercpa.com,"Strader & Associates",http://www.stradercpa.com,Bethlehem,Pennsylvania,Accountant
+jonathan@jmasoncpa.com,"Jonathan M Mason CPA",http://jmasoncpa.com,Bethlehem,Pennsylvania,"Chartered accountant"
+sergio@dlhbusinesscenter.com,"DLH BUSINESS CENTER",http://dlhbusinesscenter.com,Bethlehem,Pennsylvania,"Tax preparation service"
+ray@mainsailbookkeeping.com,"Jordan & Delaney",http://www.mainsailbookkeeping.com,Ambler,Pennsylvania,Accountant
+jscheetz@pbgw.com,"Pritchard Bieler Gruver & Willison PC",http://www.pbgw.com,Colmar,Pennsylvania,"Tax preparation service"
+carries@snavelytax.com,"Ralph Knelly Tax & Accounting",http://www.snavelytax.com,Bloomsburg,Pennsylvania,"Tax preparation"
+mhorst@macpas.com,"McKonly & Asbury (CPAs & Business Advisors)",http://www.macpas.com,Bloomsburg,Pennsylvania,"Accounting firm"
+info@wpchr.com,"Schlude Richard M",http://wpchr.com,Bloomsburg,Pennsylvania,"Tax preparation service"
+erika@haines-cpas.com,"Haines & Co CPA",http://www.haines-cpas.com,Bradford,Pennsylvania,"Tax preparation service"
+dthompson@cpabr.com,"Boyer & Ritter CPA-Conslnts",http://www.cpabr.com,Carlisle,Pennsylvania,"Chartered accountant"
+markwetzel@markwetzelcpa.com,"Kern Craig a CPA",http://www.markwetzelcpa.com,Carlisle,Pennsylvania,Accountant
+dave@baboiancpa.com,"Baboian David CPA",http://www.baboiancpa.com,"Camp Hill",Pennsylvania,Accountant
+kshenk@troutcpa.com,"Greenawalt & Company PC",http://greenawalt.cc,Carlisle,Pennsylvania,Accountants
+bill@wapcpa.com,"Bardetch Berger",http://wapcpa.com,Chambersburg,Pennsylvania,Accountant
+dwayne@sollenbergeraccounting.com,"Sollenberger Accounting LLC",http://sollenbergeraccounting.com,Chambersburg,Pennsylvania,"Accounting firm"
+mtsllc@kuhncom.net,"Myers Tax Service",http://myerstaxservicellc.com,Orrstown,Pennsylvania,"Bookkeeping service"
+lisa@bywbooks.com,"Nicolella Anthony J CPA",http://www.balanceyourworldbookkeeping.com,"Ridley Park",Pennsylvania,Accountant
+fmyers@myers-cpa.com,"Myers & Associates",http://www.myers-cpa.com,"West Chester",Pennsylvania,Accountant
+contact@diamondtaxes.com,"Diamond Accounting Services",http://www.diamondtaxes.com,Holmes,Pennsylvania,Accountant
+mcl@maulo.com,"Maulo & Company Ltd.",http://www.maulo.com,"West Chester",Pennsylvania,"Chartered accountant"
+carolyoung@rimmerco.com,"Rimmer & Jennings",http://www.rimmerco.com,Media,Pennsylvania,Accountant
+frontdesk@accountingcorpofpa.com,"Accounting Corporation-Pennsylvania",http://www.accountingcorpofpa.com,Broomall,Pennsylvania,"Tax preparation service"
+josh@computerwc.com,"Ogorek & Co Inc",http://ogorekco.com,"West Chester",Pennsylvania,Accountant
+bruce@rbrucebryan.com,"R Bruce Bryan Associates",http://rbrucebryan.com,"West Chester",Pennsylvania,Accountant
+ejf@fiorentinocpa.com,"FIORENTINO CPA LLC",http://fiorentinocpa.com,"West Chester",Pennsylvania,Accountant
+contact@robainsworthcpa.com,"Robert Ainsworth CPA PC",http://robainsworthcpa.com,"West Chester",Pennsylvania,Accountant
+help@countingworkspro.com,"Kopensky LLP CPAs",http://www.kopensky.com,Conshohocken,Pennsylvania,Accountant
+dturner@touey.com,"Touey and Company LLC CPAs",http://www.touey.com,Media,Pennsylvania,Accountant
+jcmictax@att.net,"Glenolden Tax Services",http://glenoldentaxservice.com,Glenolden,Pennsylvania,"Tax preparation service"
+info@weisstax.com,"The Weiss Group",http://www.weisstax.com,"Chadds Ford",Pennsylvania,Accounting
+info@keysolutions.us,"Keystone Financial Solutions Inc.",http://www.keysolutions.us,Exton,Pennsylvania,"Accounting firm"
+anthony@apatax.com,"APA Tax Accountants",http://www.apatax.com,Coatesville,Pennsylvania,"Chartered accountant"
+uwa@uwacpa.com,"Umbreit Wileczek & Associates PC",http://uwacpa.com,"Kennett Square",Pennsylvania,Accountant
+anthony@bearoffcpa.com,"Bearoff & Associates LLC.",http://www.bearoffcpa.com,"Blue Bell",Pennsylvania,"Chartered accountant"
+michalecapriotti@toddandtodd.com,"Todd & Todd LLP",http://www.toddandtodd.com,"Chester Springs",Pennsylvania,"Chartered accountant"
+scottjefferys@verizon.net,"Jefferys & Associates",http://jefferyscpa.com,Exton,Pennsylvania,Accountant
+davegiac@verizon.net,"David V Giacomucci & Co Inc",http://www.davegiacomuccicpa.com,"Newtown Square",Pennsylvania,Accountant
+office@coladonatocpa.com,"Coladonato CPA",http://www.coladonatocpa.com,Malvern,Pennsylvania,"Accounting firm"
+jhare@hnsbllc.com,"Hare Nichols Segal & Brint LLC",http://www.hnsbllc.com,Media,Pennsylvania,Accountant
+dcampbell@howecpas.com,"William Howe & Company CPA",http://www.howecpas.net,Media,Pennsylvania,Accountant
+robert@cpaconsultantsllc.com,"CPA Consultants LLC",http://www.cpaconsultantsllc.com,"Clifton Heights",Pennsylvania,Accountant
+jeff@m-m-cpa.com,"Mitchell James J",http://m-m-cpa.com,Media,Pennsylvania,Accountant
+paul@pstruscpa.com,"Paul Strus CPA",http://www.pstruscpa.com,Broomall,Pennsylvania,Accountant
+bill@ffbcpa.com,"William G Bradley PC",http://ffbcpa.com,"Drexel Hill",Pennsylvania,Accountant
+info@angstlaw.com,"Angst & Angst PC",http://www.angstlaw.com,Easton,Pennsylvania,Accountant
+contact@qdincometax.com,"Q&D Income Tax and Multi-Services",http://www.qdincometax.com,Easton,Pennsylvania,"Tax preparation service"
+taxhelp@cctaxhelp.com,"CC TaxHelp",http://www.cctaxhelp.com,"Williams Township",Pennsylvania,"Tax preparation service"
+taxes@cpataxcenter.com,"CPA Tax Center",http://www.cpataxcenter.com,Bangor,Pennsylvania,"Tax preparation service"
+kim@eastonpartnership.org,"M M Tanzella CPA Ea",http://www.eastonmainstreet.org,Easton,Pennsylvania,Accountant
+steveb@demarcowachtercpa.com,"Wachter Richard F CPA",http://www.demarcowachtercpa.com,Erie,Pennsylvania,Accountant
+plkcpa@monahancpa.com,"Monahan & Monahan CPA PC",http://monahancpa.com,Erie,Pennsylvania,Accountant
+skm@skmco.com,"Schaffner Knight Minnaugh Co",http://www.skmco.com,Erie,Pennsylvania,Accountant
+service@carlsontax.net,"Carlson Tax & Accounting",http://carlsontax.net,Erie,Pennsylvania,"Tax preparation service"
+info@sbaerie.com,"Small Business Alternatives",http://www.sbaerie.com,Erie,Pennsylvania,Accountant
+seancpa@seancpa.com,"Sullivan Sean T CPA",http://www.seancpa.com,Erie,Pennsylvania,Accountant
+mmoore@mtmcpafirm.com,"Michael T. Moore CPA",http://mtmcpafirm.com,Erie,Pennsylvania,"Chartered accountant"
+plq@pennyqualls.com,"P L Qualls & Co",http://www.pennyqualls.com,Erie,Pennsylvania,"Accounting firm"
+jtkcpa@velocity.net,"Kuvshinikov Joseph T CPA",http://www.jtkcpa.net,Erie,Pennsylvania,Accountant
+bruce@vancleveinc.com,"Van Cleve Payroll",http://vancleveinc.com,Erie,Pennsylvania,Accountant
+lisa@lasmithonline.com,"Smith Business & Tax Service",http://www.lasmithonline.com,Corry,Pennsylvania,Accountant
+daniel@smithandcompanycpas.com,"Smith & Co",http://www.smithandcompanycpas.com,Hanover,Pennsylvania,Accountant
+bend@delisikeenan.com,"Delisi Keenan & Associates PC",http://www.delisiassociates.com,Greensburg,Pennsylvania,"Tax preparation service"
+eopst@opstcpa.com,"Edward P Opst CPA",http://www.opstcpa.com,Greensburg,Pennsylvania,Accountant
+jimk@deblasiogroup.com,"DeBlasio Group",http://www.deblasiogroup.com,Greensburg,Pennsylvania,Accountant
+info@greensburgcpa.com,"Grajcar Blissman & Co",http://www.greensburgcpa.com,Greensburg,Pennsylvania,"Tax preparation service"
+wagner1cpa@windstream.net,"Wagner William C CPA",http://www.wagner1cpa.com,Delmont,Pennsylvania,Accountant
+info@terdlecpa.com,"Terdle Mark a CPA",http://www.terdlecpa.com,Irwin,Pennsylvania,Accountant
+info@asandsco.com,"Albanese Sinchar Smith & Co.",http://www.asandsco.com,"North Huntingdon",Pennsylvania,Accountant
+contactus@zallc.org,"Zelenkofske Axelrod LLC",http://zallc.org,Pittsburgh,Pennsylvania,Accountant
+westmorelandservice@paces.com,"Westmoreland County Assessor",http://www.co.westmoreland.pa.us,Greensburg,Pennsylvania,"Tax assessor"
+tyrell@eyjohnson.com,"EY Johnson & Co",http://eyjohnson.com,Harrisburg,Pennsylvania,Accountant
+info@boremanbabb.com,"Boreman & Babb CPAs",http://www.boremanbabb.com,"New Cumberland",Pennsylvania,Accountant
+jackie@balthasercpa.com,"Goldberg & Balthaser P.C.",http://www.balthasercpa.com,Harrisburg,Pennsylvania,"Chartered accountant"
+smyers@shannonmyerspc.com,"Shannon & Myers P.C.",http://shannonmyerspc.com,Harrisburg,Pennsylvania,Accountant
+lbrewer@flowerscpas.com,"Flowers & Flowers Cpas",http://www.flowerscpas.com,Harrisburg,Pennsylvania,"Chartered accountant"
+mail@mmsacpa.com,"Martin M. Sacks & Associates: Richard Bluis CPA",http://www.mmsacpa.com,Harrisburg,Pennsylvania,Accountant
+info@denkandassociatescpa.net,"Denk & Associates",http://www.denkandassociatescpa.net,Harrisburg,Pennsylvania,"Chartered accountant"
+jpatackis@kernandcompany.com,"Kern and Company P.C.",http://kernandcompany.com,"Camp Hill",Pennsylvania,"Chartered accountant"
+ttp@tonystax.com,"Tonys Tax Preparation",http://tonystax.com,Harrisburg,Pennsylvania,"Tax preparation"
+readitrak@kdanalytical.com,"KD Analytical",http://www.kdanalytical.com,Harrisburg,Pennsylvania,Accountant
+sarah@my-cpa-firm.com,"Crystal St. Omer Roy CPA",http://my-cpa-firm.com,Mechanicsburg,Pennsylvania,"Chartered accountant"
+paul@keytaxllc.com,"Keystone Tax",http://keystonetaxassociates.com,"Camp Hill",Pennsylvania,"Tax preparation service"
+info@ellisgroupservices.com,"The Ellis Group LLC.",http://www.ellisgroupservices.com,Mechanicsburg,Pennsylvania,Accountant
+jru@urcpas.com,"Jeffrey R. Updegraff CPA",http://urcpas.com,"Camp Hill",Pennsylvania,"Accounting firm"
+payroll@feighttax.com,"Michael R. Feight Accounting Service",http://www.feighttax.com,Hallam,Pennsylvania,"Chartered accountant"
+zach@harrisburgbookkeeping.com,"Harrisburg Bookkeeping",http://harrisburgbookkeeping.com,"Camp Hill",Pennsylvania,"Bookkeeping service"
+bdavis@hra-harrisburgpa.org,"Harrisburg City Controller Office",http://harrisburgcitycontroller.com,Harrisburg,Pennsylvania,"City Tax Office"
+kstraub@simonlever.com,"Hartman & Scheuchenzuber CPAs",http://h-scpas.com,Mechanicsburg,Pennsylvania,"Accounting firm"
+tax@drmoorecpa.com,"Moore and Associates PC",http://www.drmoorecpa.com,Hazleton,Pennsylvania,"Chartered accountant"
+michelle.saullo@ceterafs.com,"Kubishin & Ator",http://www.kubishin-ator.com,"Hazle Township",Pennsylvania,Accountant
+mail@clementecpa.com,"Snyder & Clemente",http://www.clementecpa.com,Kingston,Pennsylvania,Accountant
+brenth@parksandco.com,"Parks & Co",http://parksandco.com,Palmyra,Pennsylvania,"Tax preparation service"
+infor@briankellycpa.com,"Brian T Kelly CPA & Associates",http://www.briankellycpa.com,Honesdale,Pennsylvania,Accountant
+sgoldyn@keystoneretirement.com,"Keystone Retirement Resources",http://www.keystoneretirement.com,Archbald,Pennsylvania,"Financial Advisor"
+paul.psi@rushefski.com,"Rushefski Accounting & Consulting Inc.",http://rushefski.com,"Old Forge",Pennsylvania,Accountant
+info@abmelonecpa.com,"Thomas J Melone CPA",http://abmelonecpa.com,Pittston,Pennsylvania,Accountant
+jkearney@kearncpa.com,"John P Kearney CPA",http://www.kearncpa.com,Pittston,Pennsylvania,"Accounting firm"
+vtatulli@tatulli.com,"George M Marcinek CPA",http://www.tatulli.com,Gouldsboro,Pennsylvania,Accountant
+psg@brunsgellescpa.com,"Bruns Gelles & Company PC",http://www.brunsgellescpa.com,Murrysville,Pennsylvania,Accountant
+info@wintercpas.com,"Winter Accounting & Advising LLC",http://wintercpas.com,Verona,Pennsylvania,Accountant
+samantha@keithjpeercpa.com,"Keith J Peer CPA",http://www.keithjpeercpa.com,"Belle Vernon",Pennsylvania,Accountant
+gmoidel@mmtpc.com,"Gary A Moidel CPA",http://www.mmtpc.com,Pittsburgh,Pennsylvania,"Tax preparation service"
+treacy@treasdllc.com,"Steigerwalt Michael J CPA",http://www.treasdllc.com,Bowmanstown,Pennsylvania,Accountant
+kjones@barnessaly.com,"Barnes Saly & Company P.C.",http://www.barnessaly.com,Johnstown,Pennsylvania,"Tax preparation"
+tim@apgtaxservices.com,"A P G Tax Services Inc",http://www.apgtaxservices.com,Johnstown,Pennsylvania,"Tax preparation service"
+debbie@herbertcpa.com,"Herbert Cpa & Associates PC",http://www.herbertcpa.com,Johnstown,Pennsylvania,Accountant
+cthompson@cfostratllc.com,"CFO Strategies",http://cfostratllc.com,Johnstown,Pennsylvania,"Chartered accountant"
+info@johnstowntaxes.com,"Asset Planning Tax Group - Johnstown Taxes",http://johnstowntaxes.com,Johnstown,Pennsylvania,"Tax preparation"
+micontable@jwjsolutionspllc.com,"JWJ Solutions PLLC",http://jwjsolutionspllc.com,Lebanon,Pennsylvania,Accountant
+mike@md-cpa.com,"Michael DiChristofaro",http://md-cpa.com,Tullytown,Pennsylvania,Accountant
+info@nlacct.com,"R McClain CPA",http://www.nlacct.com,Morrisville,Pennsylvania,Accountant
+marketing@rahlcpas.com,"Rahl & Associates Pc",http://www.rahlcpas.com,Yardley,Pennsylvania,Accountant
+rob@strackassociates.com,"Strack Theodore J CPA",http://www.strackassociates.com,Yardley,Pennsylvania,"Tax preparation service"
+jerry@simoniankatz.com,"Simonian Katz & Co",http://www.simoniankatz.com,Morrisville,Pennsylvania,"Chartered accountant"
+diane@langhornetax.com,"Langhorne Tax & Bookkeeping Inc",http://www.langhornetax.com,Langhorne,Pennsylvania,"Tax preparation service"
+nk@nktaxsolutions.com,"Cantor Novak Beaver",http://nktaxsolutions.com,Newtown,Pennsylvania,Accountant
+barleycompany@verizon.net,"Barley & Company CPA",http://www.barleycompanypc.com,Huntingdon,Pennsylvania,Accountant
+info@mindythomascpa.com,"Mindy M Thomas CPA",http://mindythomascpa.com,"State College",Pennsylvania,"Chartered accountant"
+info@nittanypayroll.com,"Nittany Payroll Services LLC",http://nittanypayroll.com,Huntingdon,Pennsylvania,"Bookkeeping service"
+john@johnramseycpa.com,"John E Ramsey CPA",http://johnramseycpa.com,Tyrone,Pennsylvania,"Tax preparation service"
+teresak@emertcpa.com,"Emert & Associates",http://www.emertcpa.com,"Lock Haven",Pennsylvania,"Tax preparation service"
+aronow@focusonfinance.com,"Lewis M Aronow CPA",http://focusonfinance.com,Feasterville-Trevose,Pennsylvania,"Tax preparation service"
+info@upyourprofit.com,"Malkowski & Co PC",http://upyourprofit.com,Feasterville-Trevose,Pennsylvania,Accountant
+info@lounorellicpa.com,"Norelli Louis a CPA",http://www.lounorellicpa.com,Feasterville-Trevose,Pennsylvania,Accountant
+brian@joelglauserpc.com,"Joel L. Glauser",http://www.joelglauserpc.com,Feasterville-Trevose,Pennsylvania,Accountant
+info@sprishen.com,"Sprishen & Associates Inc",http://www.sprishen.com,Feasterville-Trevose,Pennsylvania,Accountant
+payrolldept@casipayrollplus.com,"Davis Mark S CPA",http://www.financialgroupplus.com,Southampton,Pennsylvania,Accountant
+gen@thesum-it.com,"SUM.it Business Services Inc.",http://www.thesum-it.com,Feasterville-Trevose,Pennsylvania,"Bookkeeping service"
+lderito@mckayderito.com,"Mc Kay De Rito & Co",http://www.mckayderito.com,Feasterville-Trevose,Pennsylvania,"Financial Advisor"
+info@lernercpa.com,"Steven J Lerner P.C.",http://www.lernercpa.com,Feasterville-Trevose,Pennsylvania,"Accounting firm"
+doreen.p@verizon.net,"Pletcher Patricia CPA",http://www.patpletchercpa.com,Richboro,Pennsylvania,"Tax preparation service"
+info@oharawardcpas.com,"OHara Ward & Associates",http://oharawardcpas.com,Langhorne,Pennsylvania,"Tax preparation service"
+shawn@dscpa.com,"De Grouchy Sifer & Co",http://www.dscpa.com,Richboro,Pennsylvania,Accountant
+ks.mazen@mazenandcompany.com,"Mazen & Co Inc",http://www.mazenandcompany.com,Southampton,Pennsylvania,"Tax preparation service"
+info@papplerthompsoncpa.com,"Pappler Thompson & Associates",http://www.papplerthompsoncpa.com,Southampton,Pennsylvania,Accountant
+larry@hahncpa.net,"Lawrence J Hahn CPA",http://hahncpa.net,Jenkintown,Pennsylvania,"Tax preparation service"
+christie@paiscpa.com,"Emmett A Pais CPA PC",http://www.paiscpa.com,"White Oak",Pennsylvania,Accountant
+anna@annacpa.com,"Parkinson Anna M CPA",http://www.annacpa.com,"White Oak",Pennsylvania,Accountant
+rob@smartmoneybookkeeping.com,"Joyce M. McChesney",http://smartmoneybookkeeping.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+jrvcpa@jimverlato.com,"Verlato James R CPA",http://www.jimverlato.com,Pittsburgh,Pennsylvania,Accountant
+jmonaco@donnsegercpa.com,"Donn T Seger CPA",http://www.donnsegercpa.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+bplusk@sisterson.com,"Sisterson & Co. LLP",http://www.sisterson.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+jconley@egconley.com,"EG Conley P.C.",http://www.egconley.com,Pittsburgh,Pennsylvania,"Accounting firm"
+alysa@tompaolo.com,"Thomas P. Paolo E.A.",http://tompaolo.com,Pittsburgh,Pennsylvania,"Tax preparation service"
+cblotzer@creesesmith.com,"Creese Smith & Co. LLC",http://www.creesesmith.com,Pittsburgh,Pennsylvania,Accountant
+rwarwick@warwickcpa.net,"Robert Warwick & Associates",http://www.warwickcpa.net,Monroeville,Pennsylvania,"Chartered accountant"
+nroczko@roczkocpa.com,"Roczko & Associates LLC",http://www.roczkocpa.com,Murrysville,Pennsylvania,"Chartered accountant"
+bill@wamessinacpa.com,"William A. Messina CPA PC",http://www.wamessinacpa.com,Murrysville,Pennsylvania,"Chartered accountant"
+john@thecpa.us,"Nicksich & Neel PC",http://www.thecpa.us,Wilmerding,Pennsylvania,Accountant
+linda@lmlivengoodcpa.com,"Livengood & Associates LLC",http://www.lmlivengoodcpa.com,Murrysville,Pennsylvania,Accountant
+kathy@demarchicpa.com,"De Marchi & Associates",http://www.demarchicpa.com,"Penn Hills",Pennsylvania,Accountant
+d.hartley9@vbs.bz,"Virtual Business Support LLC",http://www.vbs.bz,Murrysville,Pennsylvania,"Bookkeeping service"
+info@coycapital.com,"Coy Capital Management Inc.",http://www.coycapital.com,Monroeville,Pennsylvania,"Financial Advisor"
+rcoon@btccpa.com,"Bielau Tierney Coon & Company",http://www.btccpa.com,Pittsburgh,Pennsylvania,Accountant
+karen@ga-llc.com,"Green Accounting LLC.",http://ga-llc.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+info@richaccounting.com,"Rich Accounting & Consulting",http://www.richaccounting.com,Kingston,Pennsylvania,"Tax preparation service"
+info@carvercpa.com,"Carver and Associates LLC",http://www.carvercpa.com,"Forty Fort",Pennsylvania,"Chartered accountant"
+info@packerthomas.com,"Packer Thomas & Co: Cournan John E CPA",http://www.packerthomas.com,"New Castle",Pennsylvania,Accountant
+info@gardnerstax.com,"Gardners Accounting/Financial",http://gardnerstax.com,"New Castle",Pennsylvania,Accountant
+ken@kerandall.com,"Kimberly Donovan CPA",http://www.kerandall.com,Butler,Pennsylvania,Accountant
+mail@ahaltd.net,"Affordable Housing Accountants",http://www.ahaltd.net,Portersville,Pennsylvania,"Chartered accountant"
+alicem@bbpcpa.com,"Black Bashor & Porsch LLP",http://www.bbpcpa.com,Sharon,Pennsylvania,Accountant
+jkennedy@diehlcpa.com,"Diehl Accounting & Financial Services PC",http://www.diehlcpa.com,Butler,Pennsylvania,"Tax preparation service"
+sherri@rrtaxservicesinc.com,"R & R Tax and Accounting Services Inc",http://rrtaxservicesinc.comcastbiz.net,"Lower Burrell",Pennsylvania,"Tax preparation service"
+pmaguire@maguirehegarty.com,"Maguire Hegarty",http://maguirehegarty.com,Norristown,Pennsylvania,"Chartered accountant"
+info@cpahelpnow.com,"Gambone George a CPA",http://cpahelpnow.com,Norristown,Pennsylvania,Accountant
+lbarbadoro@coombscpa.com,"Coombs Lonnie a CPA",http://www.coombscpa.com,"Blue Bell",Pennsylvania,Accountant
+ddiasio@albericidiasio.com,"Alberici Diasio & Associates PC",http://www.albericidiasio.com,Conshohocken,Pennsylvania,Accountant
+ken.lehrer@verizon.net,"Kenneth E Lehrer CPA LLC",http://www.kenlehrer.com,"Bryn Mawr",Pennsylvania,Accountant
+frank@mcculloughco.com,"McCullough & Company PC CPAs",http://www.mcculloughco.com,"Newtown Square",Pennsylvania,"Chartered accountant"
+ann@richarcpa.com,"Richar & Associates",http://richarcpa.com,Seneca,Pennsylvania,Accountant
+edbowe@bowecpa.com,"Bowe and Associates CPA",http://www.bowecpa.com,Philadelphia,Pennsylvania,"Chartered accountant"
+don@sandyaccount.com,"Sandy Accounting Inc",http://sandyaccount.com,Philadelphia,Pennsylvania,Accountant
+info@davidlopezcpa.com,"David A Lopez & Co",http://davidlopezcpa.com,Philadelphia,Pennsylvania,Accountant
+cpa@macalpinecarll.com,"Mac Alpine Carll & Co",http://www.macalpinecarll.com,Philadelphia,Pennsylvania,"Chartered accountant"
+accountant@prodigytaxes.com,"Hirschhorn Fry & Associates",http://www.prodigytaxes.com,Philadelphia,Pennsylvania,Accountant
+gwisla@verizon.net,"Wisla & Cohen LLP",http://www.wislacohen.com,Philadelphia,Pennsylvania,Accountant
+info@fiorenzacpa.com,FiorenzaCPA,http://fiorenzacpa.com,Philadelphia,Pennsylvania,Accountant
+fernando@suarezoffice.com,"50% off Income Tax at Suarez Office",http://www.suarezoffice.com,Philadelphia,Pennsylvania,Accountant
+ajsachs@ajsachscpa.com,"Anna J Sachs CPA LLC",http://www.ajsachscpa.com,Ardmore,Pennsylvania,"Chartered accountant"
+info@thefocusgroupcpa.com,"THE FOCUS GROUP CPA FIRM",http://www.thefocusgroupcpa.com,Philadelphia,Pennsylvania,"Chartered accountant"
+art@rsgcpas.com,"Notos Chris CPA",http://rsgcpas.com,"Bala Cynwyd",Pennsylvania,Accountant
+garyweisbandcpa@verizon.net,"Weisband Gary S CPA",http://www.garyweisbandcpa.com,Ardmore,Pennsylvania,Accountant
+lyn@ftaphiladelphia.com,"Mullen III William J",http://www.ftaphiladelphia.com,Philadelphia,Pennsylvania,"Tax preparation service"
+taxguru@ltaxrs.com,"Legacy Tax & Resolution Services",http://www.legacytaxresolutionservices.com,Philadelphia,Pennsylvania,"Tax Lawyer"
+robert@bassman.com,"Robert E. Sternberg CPA",http://www.bassman.com,"Blue Bell",Pennsylvania,Accountant
+junior@ciminera.com,"Ciminera Advisors LLC",http://ciminera.com,Philadelphia,Pennsylvania,"Tax Advisor"
+kdailey@kdfinancial.com,"KD Financial Services",http://www.kdfinancial.com,Philadelphia,Pennsylvania,"Financial Advisor"
+ted@tedlipscpa.com,"Lips Theodore I CPA",http://www.tedlipscpa.com,Wayne,Pennsylvania,Accountant
+info@smarttax.com,"J. Travis & Associates",http://www.jtravisandassociates.com,Philadelphia,Pennsylvania,"Accounting firm"
+israel.dandco@dershowitzcompany.biz,"Dershowitz & Company",http://www.dershowitzcompany.biz,"Huntingdon Valley",Pennsylvania,"Tax preparation"
+info@ibstaxservice.com,"IBS Tax and Accounting Services",http://www.ibstaxservice.com,Philadelphia,Pennsylvania,"Tax preparation service"
+mail@odonnellassociates.com,"Hornick & Associates LLC",http://www.odonnellassociates.com,Philadelphia,Pennsylvania,Accountant
+george@siegelandcompany.com,"Siegel and Company PC",http://siegelandcompany.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+jsatira@satiracpas.com,"Satira Associates P.C.",http://www.satiracpas.com,Pittsburgh,Pennsylvania,Accountant
+gew@gewaccounting.com,"GEW Accounting",http://www.gewaccounting.com,Pittsburgh,Pennsylvania,Accountant
+jjbpgh@consolidated.net,"John J Bosley CPA",http://www.bosleycpa.com,Pittsburgh,Pennsylvania,Accountant
+duffy@djspc.com,"DeSisto Jones Schneeberger & Associates",http://www.djspc.com,Pittsburgh,Pennsylvania,Accountant
+info@scullyscully.com,"Scully & Scully PC",http://scullytaxlawgroup.com,Pittsburgh,Pennsylvania,"Tax Lawyer"
+bernie@bsmithcpa.com,"Bernard F. Smith",http://www.bsmithcpa.com,Pittsburgh,Pennsylvania,Accountant
+office@mcgeemaruca.com,"Mc Gee Maruca & Associates PC",http://www.mcgeemaruca.com,Pittsburgh,Pennsylvania,Accountant
+tomwashington@b2bcfo.com,"Rick Ubinger partner B2B CFO",http://www.b2bcfo.com,Pittsburgh,Pennsylvania,"Financial Advisor"
+info@regis-group.com,"The Regis Group Inc.",http://www.regis-group.com,Pittsburgh,Pennsylvania,Accountant
+info@hilemancpa.com,"Hileman and Associates PC",http://www.hilemancpa.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+jmorrison@cpa-ha.com,"Houston & Associates LLC",http://www.cpa-ha.com,Pittsburgh,Pennsylvania,"Chartered accountant"
+amy@rlocompany.com,"Omer Robert L CPA",http://rlocompany.com,Carnegie,Pennsylvania,Accountant
+alanpopa@popacpas.com,"Popa & Associates CPAs",http://www.popacpas.com,"Bethel Park",Pennsylvania,"Chartered accountant"
+ellen@pandolfoassociates.com,"Thomas Pandolfo & Associates Ltd",http://www.pandolfoandassociates.com,"McKees Rocks",Pennsylvania,Accountant
+maharaja@americanfinancial.biz,"American Financial Consulting",http://www.americanfinancial.biz,Pittsburgh,Pennsylvania,"Chartered accountant"
+info@jenningscompanycpa.com,"Jennings & Company CPA P.C.",http://jenningscompanycpa.com,Pittsburgh,Pennsylvania,"Accounting firm"
+jaloeffler@getintune.com,"Intune Business Advisors LLC",http://getintune.com,Pittsburgh,Pennsylvania,"Financial Advisor"
+info@afmcgervey.com,"A F Mc Gervey & Co",http://www.afmcgervey.com,Pittsburgh,Pennsylvania,Accountant
+taxinfo@hnbcpa.net,"Habenicht Novak & Birckbichler CPA",http://www.hnbcpa.net,Butler,Pennsylvania,"Tax preparation"
+barb@barbfritschcpa.com,"Barbara M. Fritsch CPA",http://www.barbfritschcpa.com,Pittsburgh,Pennsylvania,"Tax preparation service"
+hello@inhomeaccountants.com,"InHome Accountants",http://www.inhomeaccountants.com,Wexford,Pennsylvania,Accountant
+info@dktbs.com,"Total Business Solutions",http://www.dktbs.com,Warrendale,Pennsylvania,Accountant
+jim@martintax.com,"JTM Tax and Accounting Services: James T Martin",http://martintax.com,Pittsburgh,Pennsylvania,"Tax Advisor"
+bcartwright@mohollen.com,"Mohollen & Company CPAs",http://www.mohollen.com,Pottstown,Pennsylvania,Accountant
+gtornetta@bkandmore.com,"Bookkeeping & More",http://www.bkandmore.com,Pottstown,Pennsylvania,Accountant
+info@agmsolutions.com,"Erb Rebecca CPA",http://tjbeinc.com,Boyertown,Pennsylvania,Accountant
+info@toolancpa.com,"Toolan & Co PC",http://www.toolancpa.com,Exton,Pennsylvania,Accountant
+email@lettichandzipay.com,"Lettich and Zipay CPAs",http://www.lettichandzipay.com,Pottsville,Pennsylvania,"Chartered accountant"
+alyse@gomaava.com,"A Mazzo Accounting Services",http://www.amazzoaccounting.com,Reading,Pennsylvania,Accountant
+hgwyotax@attglobal.net,"Wyomissing Tax & Accounting Services LLC",http://wyotaxllc.com,Reading,Pennsylvania,"Tax preparation service"
+k.cpas@kosmerl.net,"Kosmerl & Co PC",http://www.kosmerl.net,Reading,Pennsylvania,"Tax preparation service"
+aross@rosscpa.com,"Alan Ross & Company PC",http://www.rosscpa.com,Reading,Pennsylvania,Accountant
+info@rodgerkrausecpa.com,"Rodger Krause CPA",http://www.rodgerkrausecpa.com,Reading,Pennsylvania,"Chartered accountant"
+info@sdrobnickcpa.com,"Drobnick Stephanie CPA",http://www.sdrobnickcpa.com,Shillington,Pennsylvania,Accountant
+smcosentino@cctaxservice.com,"C & C Tax Service",http://www.cctaxservice.com,Reading,Pennsylvania,"Tax preparation service"
+brent@qb-accountants.com,"QB Accountants Inc.",http://www.qb-accountants.com,Wyomissing,Pennsylvania,Accountant
+jim@jamesspringercpa.com,"James A. Springer CPA",http://jamesspringercpa.com,Wyomissing,Pennsylvania,"Chartered accountant"
+info@galitzaccounting.com,"Galitz & Associates",http://www.galitzaccounting.com,Reading,Pennsylvania,Accountant
+info@discerningit.com,"Robert B Metzger Consulting",http://www.discerningit.com,Wyomissing,Pennsylvania,"Tax preparation service"
+info@wgkcpa.com,"William G Koch & Associates",http://www.wgkcpa.com,Reading,Pennsylvania,"Tax preparation service"
+info@ricecpa-atty.com,"RICE CPA",http://ricecpa-atty.com,Reading,Pennsylvania,"Financial Advisor"
+mhyde@iacadvisor.com,"Hyde Financial Group LLC",http://www.hydefinancialgroup.com,Reading,Pennsylvania,"Financial Advisor"
+lee@prussman-goss.com,"Prussman-Goss CPAs",http://www.prussman-goss.com,Ephrata,Pennsylvania,"Chartered accountant"
+stevem@covenant-cpa.com,"Covenant CPA LLC",http://covenant-cpa.com,"Willow Street",Pennsylvania,"Tax Advisor"
+david.walter@dlwpartners.com,"aaa tax practices",http://www.aaataxaccounting.com,"Clarks Summit",Pennsylvania,"Tax preparation service"
+mail@ginaderjones.com,"Ginader Jones & Co. LLP",http://ginaderjones.com,Archbald,Pennsylvania,"Tax preparation service"
+eric@cjspc.com,"Cawley Johnson & Sanders PC",http://www.cjspc.com,"Clarks Summit",Pennsylvania,"Chartered accountant"
+info@grahamaccounting.com,"Graham Accounting & Consulting",http://www.grahamaccounting.com,Archbald,Pennsylvania,Accountant
+support@leighbaldwin.com,"Howard Pachter Accountant",http://www.leighbaldwin.com,Scranton,Pennsylvania,Accountant
+alex@countingworks.com,"CHD Associate LLC",http://www.millercollc.com,York,Pennsylvania,Accountant
+info@heckmanandlaudeman.com,"Heckman & Laudeman",http://www.heckmanandlaudeman.com,Orwigsburg,Pennsylvania,"Chartered accountant"
+ghamm@larryraboldcpa.com,"Bold Accounting Services LLC",http://www.boldasllc.com,Myerstown,Pennsylvania,Accountant
+john@custercpa.com,"Laudenslager & Shade Inc. - Certified Public Accountants",http://laudenslagerandshadeinc.com,Millersburg,Pennsylvania,"Chartered accountant"
+chouser@cccfcpa.com,"Catalano Michael J CPA",http://cccfcpa.com,"State College",Pennsylvania,"Chartered accountant"
+info@microdatasystems.us,"Microdata Systems Inc",http://www.infomsi.com,"State College",Pennsylvania,"Tax preparation service"
+lrc@e-lifestyle-retirement.com,"Lifestyle Retirement Company",http://www.e-lifestyle-retirement.com,"State College",Pennsylvania,"Financial Service"
+jennifer@bookitpa.com,"Centre Bookkeepers",http://www.bookitpa.com,Bellefonte,Pennsylvania,"Bookkeeping service"
+info@bucynskitax.com,"Bucynski Tax Service",http://www.bucynskitax.com,Huntingdon,Pennsylvania,"Tax preparation service"
+christa@mcdermotttaxservices.com,"Leslie McDermott",http://mcdermotttaxservices.com,Huntingdon,Pennsylvania,"Tax preparation service"
+ncmcpa@verizon.net,"Nancy Chapman McNamee CPA",http://www.ncm-cpa.com,Stroudsburg,Pennsylvania,"Financial Advisor"
+info@rileyandcompany.com,"Riley & Company Inc.",http://www.rileyandcompany.com,Stroudsburg,Pennsylvania,"Chartered accountant"
+jbarchiesi@worksiteventures.com,LedgerWorx,http://www.merchantworx.co,"East Stroudsburg",Pennsylvania,Accountant
+sue@susanshultzcpa.com,"Ozark & Shultz Accounting",http://susanshultzcpa.com,Danville,Pennsylvania,"Chartered accountant"
+tina@spruceruntax.com,"Spruce Run Tax & Accounting Service",http://www.spruceruntax.com,Lewisburg,Pennsylvania,"Tax preparation service"
+lk@larsonkellett.com,"Larson Kellett & Associates",http://www.larsonkellett.com,Montoursville,Pennsylvania,Accountant
+info@rdftax.com,"RDF Tax Services LLC",http://rdftax.com,Montoursville,Pennsylvania,"Tax preparation"
+info@halifaxborough.com,"Hoover Financial Service",http://halifaxborough.com,Halifax,Pennsylvania,Accountant
+mary@gsm.biz,"GSM Advisory Group LLC",http://www.gsm.biz,Swarthmore,Pennsylvania,"Accounting firm"
+mikeo@modcpa.com,"ODoherty & Associates P.C.",http://www.modcpa.com,Springfield,Pennsylvania,"Chartered accountant"
+jeff@evcpas.com,"Endres & Valentino CPAs LLC",http://www.endresandvalentinocpas.com,Springfield,Pennsylvania,"Tax preparation service"
+greg@mbonlinecpa.com,"MB Advisors Certified Public Accountants",http://www.mbonlinecpa.com,Media,Pennsylvania,"Chartered accountant"
+contact@cgcpc.com,"Connolly Grady & Cha PC",http://www.cgcpc.com,Springfield,Pennsylvania,"Chartered accountant"
+jhare@protaxinc.com,"Professional Income Tax Service",http://www.protaxinc.com,Media,Pennsylvania,"Tax preparation service"
+bg@mgccpa.com,"Mingis Gutowski & Company",http://www.mgccpa.com,Media,Pennsylvania,Accountant
+mchrest@jfacpa.com,"Flanagan James & Associates",http://www.jfacpa.com,"Drexel Hill",Pennsylvania,"Tax preparation service"
+tomcollinsjr@prestoncpas.com,"Preston & Company CPA",http://prestoncpas.com,"Chadds Ford",Pennsylvania,"Chartered accountant"
+bponzurick@wbkania.com,"WB Kania & Associates CPAs",http://www.wbkania.com,Uniontown,Pennsylvania,Accountant
+karin@karinhconsulting.com,"KRH Consulting",http://www.karinhconsulting.com,Uniontown,Pennsylvania,Accountant
+info@officestaffservices.com,OFFICESTAFF,http://www.officestaffservices.com,Wilkes-Barre,Pennsylvania,"Bookkeeping service"
+rstover@loyalsocktownship.org,"Loyalsock Real Estate Tax",http://www.loyalsocktownshipbos.com,Williamsport,Pennsylvania,"Tax preparation service"
+barb@ticeassociates.com,"Tice Associates",http://www.ticeassociates.com,"West York",Pennsylvania,"Tax preparation service"
+henryd@yorkcpas.com,"Summerson & Alleman PC",http://www.yorkcpas.com,York,Pennsylvania,Accountant
+info@king-associates.net,"King & Associates CPA",http://www.king-associates.net,Dallastown,Pennsylvania,"Chartered accountant"
+jeanie@jolsonaccounting.com,"olson accounting services",http://jolsonaccounting.com,Stewartstown,Pennsylvania,Accountant
+marc@mjkcpa.com,"MARC J KELLER CPA",http://mjkcpa.com,York,Pennsylvania,"Tax preparation"
+vivian.dehoff@raymondjames.com,"Raymond James Financial Services Miller & Gay Investment Management",http://www.rjfsyork.com,York,Pennsylvania,"Financial Advisor"
+richard.butler@butlergingerich.com,"Butler Gingerich & Company Cpa's",http://www.butlergingerich.com,York,Pennsylvania,Accountant
+mconley@integrityws.com,"Wade Williams Financial Advisor with Integrity Wealth Strategies",http://www.integrityws.com,York,Pennsylvania,"Financial Advisor"
