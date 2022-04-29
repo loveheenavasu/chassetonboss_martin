@@ -54,6 +54,36 @@ class Spintax
     }
 }
 
+class Placeholder
+{
+    public function process($text, $data_variable)
+    {
+        $search  = array('*First name*', 
+                        '*Last name*', 
+                        '*Company*', 
+                        '*Website*', 
+                        '*City*',
+                        '*State*',
+                        '*Profession*', 
+                        '*Source*');
+
+        $variable = [];
+
+        $variable[] = isset($data_variable['first_name']) ? $data_variable['first_name'] : '';
+        $variable[] = isset($data_variable['last_name']) ? $data_variable['last_name'] : '';
+        $variable[] = isset($data_variable['company_name']) ? $data_variable['company_name'] : '';
+        $variable[] = isset($data_variable['website']) ? $data_variable['website'] : '';
+        $variable[] = isset($data_variable['city']) ? $data_variable['city'] : '';
+        $variable[] = isset($data_variable['state']) ? $data_variable['state'] : '';
+        $variable[] = isset($data_variable['profession']) ? $data_variable['profession'] : '';
+        $variable[] = isset($data_variable['source']) ? $data_variable['source'] : '';
+                
+        return str_replace($search, $variable, $text);
+
+    }
+    
+}
+
 class EventCalenderList extends Component
 {
     use WithPagination;
@@ -79,7 +109,7 @@ class EventCalenderList extends Component
         $event->update([
             'status' => Event::STATUS_RUNNING
         ]);
-        //$this->eventEmailCreation($event);
+        $this->eventEmailCreation($event);
     }
 
     public function stopEvent(Event $event): void
@@ -127,10 +157,12 @@ class EventCalenderList extends Component
                 ->select('e.id as email_id','e.email as email','ef.value','ef.type as type','event_listing_id as listing_id','eventlisting_emails.event_email_id as ee_id')
                 ->orderBy(DB::raw('RAND()'))
                 ->limit(1)->get();
+
+        $data_variables = [];
         foreach ($allEmailsInfos as $key => $allEmailsInfo) {
             $curl = curl_init();
             curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$allEmailsInfo['email'].' ',
+            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$allEmailsInfo['email'],
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -139,11 +171,12 @@ class EventCalenderList extends Component
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             ));
-            $response = curl_exec($curl);
+            echo $response = curl_exec($curl);
             curl_close($curl);
             
             $validation_check = json_decode($response);
-            if($validation_check->result == 'invalid' || $validation_check->result == 'unknown'){
+            
+            if($validation_check->result == 'invalid'){
                 $invalid_emails = array('email'=>$allEmailsInfo['email'],'status'=>$validation_check->result,'type' => $gmail_id,'event_id' => $eventId,'event_name' => $event_name,'timezone' => $timezone);
                 
                 $InvalidEmail = EventInvalidEmail::create($invalid_emails);
@@ -155,14 +188,19 @@ class EventCalenderList extends Component
                 DB::table('eventlisting_emails')
                         ->where('event_email_id',$allEmailsInfo['ee_id'])
                         ->update($listemail_status);
-
+                
             }else{
                $allemail[]['email'] = $allEmailsInfo['email'];
                $allEmailsArray[$key]['email'] =  $allEmailsInfo['email'];  
-               $allEmailsArray[$key]['ee_id'] =  $allEmailsInfo['ee_id'];  
+               $allEmailsArray[$key]['ee_id'] =  $allEmailsInfo['ee_id'];
+               $data_variables = DB::table('eventemails_infos')
+                                    ->where('event_email_id',$allEmailsInfo['ee_id'])
+                                    ->pluck('value','type')
+                                    ->toArray();
             }  
         }
-        return ['allemail' => $allemail,'allEmailsArray' => $allEmailsArray];
+        
+        return ['allemail' => $allemail,'allEmailsArray' => $allEmailsArray,'variable'=>$data_variables];
     }
 
     public function GetAllGroups($eventId){
@@ -170,6 +208,7 @@ class EventCalenderList extends Component
                     ->leftjoin('gmail_connections as g','g.id','=','gmail_connection_groups.gmail_connection_id')
                     ->leftjoin('event as ev','ev.id','=','gmail_connection_groups.event_id')
                     ->where('gmail_connection_groups.sync_status','no')
+                    ->whereNotNull('g.token')
                     ->where('event_id',$eventId)
                     ->inRandomOrder()
                     ->first();
@@ -212,10 +251,10 @@ class EventCalenderList extends Component
         }
         return mktime($h, $i, $s, $m, $d, $y);
     }
-
-    public function eventEmailCreation(Event $event){
-        // $group = $this->argument('rule_id');
-        $group = 30;
+    
+    public function eventEmailCreation(){
+        // $group = $this->argument('event_id');
+        $group = 49;
         $allRules = Event::where('id',$group)->get();
         $allemail = [];
         if(!empty($allRules)){
@@ -225,12 +264,14 @@ class EventCalenderList extends Component
                     if($allRule->connection_type == 0){
                         // Get all event content data start
                         $spintax = new Spintax();
+                        $Placeholder = new Placeholder();
                         $timezone = $allRule->timezone; 
                         $event_name = $allRule->name; 
                         $template_id = $allRule->template_id; 
                         $templatesData = EventTemplate::where('id',$template_id)->first();
                         $email_count = $allRule->emails_count;
                         $temp_event_name = $spintax->process($templatesData->event_name);
+
                         $event_spintext = $templatesData->spin_text;
                         $event_content = $spintax->process($event_spintext);
                         $event_location = $templatesData->event_location;
@@ -238,57 +279,64 @@ class EventCalenderList extends Component
 
                         // Update sync gmail connection start
 
-                        $allGroupwithSync = $this->TotalAllGroupsSync($group);
-                        $allGroupwithoutSync = $this->TotalAllGroupsWithoutSync($group);
-                        $group_main_group_id = $allGroupwithoutSync[0]->groups_id;
-                        $group_event_id = $allGroupwithoutSync[0]->event_id;
-                        if(count($allGroupwithSync) == count($allGroupwithoutSync)){
-                            $group_sync = array('sync_status'=>'no');
-                            GmailConnectionGroup::where('event_id',$group_event_id)
-                                        ->update($group_sync);
-                        }
+                        // $allGroupwithSync = $this->TotalAllGroupsSync($group);
+                        // $allGroupwithoutSync = $this->TotalAllGroupsWithoutSync($group);
+                        // $group_main_group_id = $allGroupwithoutSync[0]->groups_id;
+                        // $group_event_id = $allGroupwithoutSync[0]->event_id;
+                        // if(count($allGroupwithSync) == count($allGroupwithoutSync)){
+                        //     $group_sync = array('sync_status'=>'no');
+                        //     GmailConnectionGroup::where('event_id',$group_event_id)
+                        //                 ->update($group_sync);
+                        // }
 
                         // Update sunc gamil connection end
 
                         // Get all groups from multiple list start
                         $all_connections = $this->GetAllGroups($group);
-                        echo "<pre>"; print_r($all_connections); die;
                         $gmail_id = $all_connections->email_id;
                         // Get all groups from multiple list end
 
-                        $email_sync_valid = EventEmailLogs::where(
-                                                    [ 
-                                                        ['type', '=',$gmail_id],
-                                                        ['event_id', '=',$all_connections->event_id]
-                                                    ]
-                                                )->get()->count();
-                        $email_sync_invalid = EventInvalidEmail::where(
-                                                    [ 
-                                                        ['type', '=',$gmail_id],
-                                                        ['event_id', '=',$all_connections->event_id]
-                                                    ]
-                                                )->get()->count();
-                        $total_sync_email = $email_sync_valid+$email_sync_invalid;
-                        if($total_sync_email == $email_count){
-                            $connectionSync = array('sync_status'=>'yes');
-                            DB::table('gmail_connection_groups')
-                                    ->where(
-                                            [ 
-                                                ['gmail_connection_id', '=',$all_connections->gmail_connection_id],
-                                                ['event_id', '=',$all_connections->event_id],
-                                                ['groups_id', '=', $all_connections->groups_id] 
-                                            ]
-                                        )
-                                        ->update($connectionSync);
-                        }
-
+                        // $email_sync_valid = EventEmailLogs::where(
+                        //                             [ 
+                        //                                 ['type', '=',$gmail_id],
+                        //                                 ['event_id', '=',$all_connections->event_id]
+                        //                             ]
+                        //                         )->get()->count();
+                        // $email_sync_invalid = EventInvalidEmail::where(
+                        //                             [ 
+                        //                                 ['type', '=',$gmail_id],
+                        //                                 ['event_id', '=',$all_connections->event_id]
+                        //                             ]
+                        //                         )->get()->count();
+                        // $total_sync_email = $email_sync_valid+$email_sync_invalid-1;
+                        // if($total_sync_email == $email_count){
+                        //     $connectionSync = array('sync_status'=>'yes');
+                        //     DB::table('gmail_connection_groups')
+                        //             ->where(
+                        //                     [ 
+                        //                         ['gmail_connection_id', '=',$all_connections->gmail_connection_id],
+                        //                         ['event_id', '=',$all_connections->event_id],
+                        //                         ['groups_id', '=', $all_connections->groups_id] 
+                        //                     ]
+                        //                 )
+                        //                 ->update($connectionSync);
+                        // }
+                        
                         // Get all emails from multiple list start
                         $allEmailArray = $this->GetAllEmails($group,$event_name,$timezone,$email_count,$gmail_id);
                         $allemail = $allEmailArray['allemail'];
                         $allEmailsArray = $allEmailArray['allEmailsArray'];
-                        // Get all emails from multiple list end
+                        
+                        // echo '<pre>';
+                        // print_r($allEmailArray);
+                        //new code added
+                        $temp_event_name = $Placeholder->process($temp_event_name, $allEmailArray['variable']);
+                        $event_content = $Placeholder->process($event_content, $allEmailArray['variable']);
 
+                        // Get all emails from multiple list end
+                        
                         // Event Create Code Start
+                        //echo"<pre>"; print_r($all_connections);die;
                         $groups_id = $all_connections->groups_id; 
                         $event_id = $all_connections->event_id;
                         $event_name = $all_connections->name;
@@ -357,6 +405,7 @@ class EventCalenderList extends Component
                     }else{
                         // Get all event content data start
                         $spintax = new Spintax();
+                        $Placeholder = new Placeholder();
                         $connection_id = $allRule->connection_id; 
                         $event_name = $allRule->event_name; 
                         $timezone = $allRule->timezone;
@@ -378,6 +427,10 @@ class EventCalenderList extends Component
                         $allEmailArray = $this->GetAllEmails($group,$event_name,$timezone,$email_count);
                         $allemail = $allEmailArray['allemail'];
                         $allEmailsArray = $allEmailArray['allEmailsArray'];
+
+                        //new code added
+                        $temp_event_name = $Placeholder->process($temp_event_name, $allEmailArray['variable']);
+                        $event_content = $Placeholder->process($event_content, $allEmailArray['variable']);
                         // Get all emails from multiple list end
 
                         $all_connections = DB::table('gmail_connections')

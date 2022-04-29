@@ -64,4 +64,22 @@ class ListingList extends Component
             $this->confirmingListingDeletion = false; 
         }
     }
+
+    public function exportInPollList(Listing $listing){
+        if (! $listing->id) {
+            return;
+        }
+        return response()->streamDownload(function () use ($listing) {
+            echo $listing->copiedValue();
+        }, '' . $listing->name . '.csv');        
+    }
+
+    public function exportNotInPollList(Listing $listing){
+        if (! $listing->id) {
+            return;
+        }
+        return response()->streamDownload(function () use ($listing) {
+            echo $listing->copiedValueInvalue();
+        }, '' . $listing->name . '.csv');        
+    }
 }

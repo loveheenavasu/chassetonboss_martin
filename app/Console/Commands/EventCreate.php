@@ -55,6 +55,36 @@ class Spintax
     }
 }
 
+class Placeholder
+{
+    public function process($text, $data_variable)
+    {
+        $search  = array('*First name*', 
+                        '*Last name*', 
+                        '*Company*', 
+                        '*Website*', 
+                        '*City*',
+                        '*State*',
+                        '*Profession*', 
+                        '*Source*');
+
+        $variable = [];
+
+        $variable[] = isset($data_variable['first_name']) ? $data_variable['first_name'] : '';
+        $variable[] = isset($data_variable['last_name']) ? $data_variable['last_name'] : '';
+        $variable[] = isset($data_variable['company_name']) ? $data_variable['company_name'] : '';
+        $variable[] = isset($data_variable['website']) ? $data_variable['website'] : '';
+        $variable[] = isset($data_variable['city']) ? $data_variable['city'] : '';
+        $variable[] = isset($data_variable['state']) ? $data_variable['state'] : '';
+        $variable[] = isset($data_variable['profession']) ? $data_variable['profession'] : '';
+        $variable[] = isset($data_variable['source']) ? $data_variable['source'] : '';
+                
+        return str_replace($search, $variable, $text);
+
+    }
+    
+}
+
 class EventCreate extends Command
 {
     /**
@@ -98,6 +128,8 @@ class EventCreate extends Command
                 ->select('e.id as email_id','e.email as email','ef.value','ef.type as type','event_listing_id as listing_id','eventlisting_emails.event_email_id as ee_id')
                 ->orderBy(DB::raw('RAND()'))
                 ->limit(1)->get();
+
+        $data_variables = [];
         foreach ($allEmailsInfos as $key => $allEmailsInfo) {
             $curl = curl_init();
             curl_setopt_array($curl, array(
@@ -130,10 +162,14 @@ class EventCreate extends Command
             }else{
                $allemail[]['email'] = $allEmailsInfo['email'];
                $allEmailsArray[$key]['email'] =  $allEmailsInfo['email'];  
-               $allEmailsArray[$key]['ee_id'] =  $allEmailsInfo['ee_id'];  
+               $allEmailsArray[$key]['ee_id'] =  $allEmailsInfo['ee_id'];
+               $data_variables = DB::table('eventemails_infos')
+                                    ->where('event_email_id',$allEmailsInfo['ee_id'])
+                                    ->pluck('value','type')
+                                    ->toArray();  
             }  
         }
-        return ['allemail' => $allemail,'allEmailsArray' => $allEmailsArray];
+        return ['allemail' => $allemail,'allEmailsArray' => $allEmailsArray, 'variable'=>$data_variables];
     }
 
     public function GetAllGroups($eventId){
@@ -141,6 +177,7 @@ class EventCreate extends Command
                     ->leftjoin('gmail_connections as g','g.id','=','gmail_connection_groups.gmail_connection_id')
                     ->leftjoin('event as ev','ev.id','=','gmail_connection_groups.event_id')
                     ->where('gmail_connection_groups.sync_status','no')
+                    ->whereNotNull('g.token')
                     ->where('event_id',$eventId)
                     ->inRandomOrder()
                     ->first();
@@ -200,6 +237,7 @@ class EventCreate extends Command
                     if($allRule->connection_type == 0){
                         // Get all event content data start
                         $spintax = new Spintax();
+                        $Placeholder = new Placeholder();
                         $timezone = $allRule->timezone; 
                         $event_name = $allRule->name; 
                         $template_id = $allRule->template_id; 
@@ -261,7 +299,9 @@ class EventCreate extends Command
                         $allemail = $allEmailArray['allemail'];
                         $allEmailsArray = $allEmailArray['allEmailsArray'];
                         // Get all emails from multiple list end
-
+                        //new code added
+                        $temp_event_name = $Placeholder->process($temp_event_name, $allEmailArray['variable']);
+                        $event_content = $Placeholder->process($event_content, $allEmailArray['variable']);
                         // Event Create Code Start
                         $groups_id = $all_connections->groups_id; 
                         $event_id = $all_connections->event_id;
@@ -331,6 +371,7 @@ class EventCreate extends Command
                     }else{
                         // Get all event content data start
                         $spintax = new Spintax();
+                        $Placeholder = new Placeholder();
                         $connection_id = $allRule->connection_id; 
                         $event_name = $allRule->event_name; 
                         $timezone = $allRule->timezone;
@@ -353,7 +394,10 @@ class EventCreate extends Command
                         $allemail = $allEmailArray['allemail'];
                         $allEmailsArray = $allEmailArray['allEmailsArray'];
                         // Get all emails from multiple list end
-
+                        //new code added
+                        $temp_event_name = $Placeholder->process($temp_event_name, $allEmailArray['variable']);
+                        $event_content = $Placeholder->process($event_content, $allEmailArray['variable']);
+                        
                         $all_connections = DB::table('gmail_connections')
                                         ->leftjoin('event as ev','ev.connection_id','=','gmail_connections.id')
                                         ->where('gmail_connections.id',$connection_id)

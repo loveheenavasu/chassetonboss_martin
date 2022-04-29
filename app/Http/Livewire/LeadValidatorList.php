@@ -16,7 +16,7 @@ class LeadValidatorList extends Component
 
     public function getLeadvalidatorsProperty()
     {
-        return LeadValidator::query()->paginate(100);
+        return LeadValidator::query()->latest()->paginate(100);
     }
 
     public function confirmingLeadvalidatorDeletion(LeadValidator $leadvalidator): void

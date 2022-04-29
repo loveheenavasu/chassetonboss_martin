@@ -47,6 +47,8 @@ class EventEmailInfo extends Model
             'Industry',
             'Date Created',
             'Annual Revenue',
+            'Profession',
+            'Source'
         ];
 
         return collect($list)->mapWithKeys(function ($item) {

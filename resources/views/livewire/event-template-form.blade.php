@@ -20,6 +20,19 @@
             <textarea id="spin_text" type="text" class="mt-1 block w-full" wire:model.defer="spin_text"></textarea>
             <x-jet-input-error for="spin_text" class="mt-2" />
         </div>
+        <div class="col-span-6" wire:ignore>
+            <p class="mt-3 text-sm text-gray-600">{{ __('Available placeholders') }}:</p>
+            <ul class="place">
+                <li class="eventplaceholder" >*First name*</li>
+                <li class="eventplaceholder">*Last name*</li>
+                <li class="eventplaceholder">*Company*</li>
+                <li class="eventplaceholder">*Website*</li>
+                <li class="eventplaceholder">*City*</li>
+                <li class="eventplaceholder">*State*</li>
+                <li class="eventplaceholder">*Profession*</li>
+                <li class="eventplaceholder">*Source*</li>
+            </ul>
+        </div>
     </x-slot>
 
     <x-slot name="actions">
@@ -65,10 +78,20 @@
         padding: 0px !important;
         margin: 0px !important;
     }
+    .place li{
+        cursor: pointer;
+    }
+
 </style>
 
 <script type="text/javascript">
 $(document).ready(function() {
+    
+    // $('#spin_text').summernote('editor.saveRange');
+    // $('#spin_text').summernote('editor.restoreRange');
+    // $('#spin_text').summernote('editor.focus');
+    
+    
     $('#spin_text').summernote(
     { 
         fontSizes: ['8', '9', '10', '11', '12', '14', '18','20','22','24','26','28','30','32','34','36','38','40','42','44','46','48','50'],
@@ -93,7 +116,16 @@ $(document).ready(function() {
         }
     });
 
+    
+
 });
+$(document).on('click', '.eventplaceholder', function(event) {
+        var placholder1Val = $(this).html();
+        $('#spin_text').summernote('editor.saveRange');
+        $('#spin_text').summernote('editor.restoreRange');
+        $('#spin_text').summernote('editor.focus');
+        $('#spin_text').summernote('editor.insertText', placholder1Val); 
+    });
 
 </script>
 

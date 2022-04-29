@@ -1,21 +1,18 @@
 <div>
-    <x-jet-action-section>
-        <x-slot name="title">
-            {{ __('Manage Lists') }}
-        </x-slot>
+    <div class="md:grid md:gap-6">
+        <x-jet-section-title>
+                <x-slot name="title">{{ __('Manage Lists') }}</x-slot>
+                <x-slot name="description">Contains sets of emails.</x-slot>
+        </x-jet-section-title>
+        <div class="mt-5 md:mt-0">
+            <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-lg">
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                    <button type="button" class="btn btn-warning delete_all_list inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 mr-4" data-url="">Delete All Selected</button>
+                    <button  type="button" class="btn btn-warning px-4 py-2 bg-gray-800 text-left text-xs font-medium text-white uppercase tracking-wider border border-transparent rounded-md " id='list_check_all'  data-checked='false'>check/uncheck all</button>
+                    </div>
 
-        <x-slot name="description">
-            Contains sets of emails.
-        </x-slot>
-
-        <x-slot name="content">
-            <div class="space-y-6">
-                <div class="flex items-center">
-                    <button type="button" class="btn btn-warning delete_all_list inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150" data-url="">Delete All Selected</button>
-                </div>
-                <button  type="button" class="btn btn-warning px-4 py-2 bg-gray-800 text-left text-xs font-medium text-white uppercase tracking-wider border border-transparent rounded-md " id='list_check_all'  data-checked='false'>check/uncheck all</button>
-
-                @if ($this->listings->isNotEmpty())
+                    @if ($this->listings->isNotEmpty())
                     @foreach ($this->listings as $listing)
                         <div class="flex items-center justify-between">
                             <div>
@@ -33,6 +30,15 @@
                                     {{"0.00%"}}</a>
                                 @endif
 
+
+                                <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="exportNotInPollList({{ $listing->id}})">
+                                    {{ __('Export Pool') }}
+                                </button>
+
+                                <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="exportInPollList({{ $listing->id}})">
+                                    {{ __('Export Used') }}
+                                </button>
+                                
                                 <a href="{{ route('listings.show', ['listing' => $listing->id]) }}" class="cursor-pointer ml-6 text-sm text-gray-400 focus:outline-none">
                                     {{ __('Details') }}
                                 </a>
@@ -50,9 +56,11 @@
                 @else
                     <div>{{ __('No lists yet.') }}</div>
                 @endif
+                </div>
             </div>
-        </x-slot>
-    </x-jet-action-section>
+        </div>
+    </div>
+
 
     <!-- Delete Confirmation Modal -->
     <x-jet-confirmation-modal wire:model="confirmingListingDeletion">

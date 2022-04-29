@@ -19,6 +19,15 @@
                             </div>
 
                             <div class="flex items-center">
+
+                                <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="exportNotInPollList({{ $listing->id}})">
+                                    {{ __('Export Pool') }}
+                                </button>
+
+                                <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="exportInPollList({{ $listing->id}})">
+                                    {{ __('Export Used') }}
+                                </button>
+                                
                                 <a href="{{ route('eventlistings.show', ['eventlisting' => $listing->id]) }}" class="cursor-pointer ml-6 text-sm text-gray-400 focus:outline-none">
                                     {{ __('Details') }}
                                 </a>

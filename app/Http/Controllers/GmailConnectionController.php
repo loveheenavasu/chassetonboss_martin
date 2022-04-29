@@ -24,10 +24,10 @@ use Session;
 class GmailConnectionController extends Controller
 {
     public Groups $group;
-    
+
     public function index(Request $request)
-    {   
-        
+    {
+
         $session = session()->get('connection_id');
         if(isset($_GET['code'])){
             $data=GmailConnection::where('id',$session)->get()->toArray();
@@ -71,8 +71,7 @@ class GmailConnectionController extends Controller
            }else{
             $value = $val[0];
            }
-            $allGroupInfos = GmailConnection::take(350)->get();
-            
+            $allGroupInfos = GmailConnection::orderBy('id', 'DESC')->get();
             return Datatables::of($allGroupInfos)
                 ->addColumn('select', function ($row) {
                     return '';
@@ -87,22 +86,22 @@ class GmailConnectionController extends Controller
                     return $row->group_name;
                 })
                 ->addColumn('action', function ($row) {
-                    
+
                     $btn = '';
                     if(isset($row->token)){
-                        
+
                     $response = null;
                     if(!empty($row->token)){
                         $settings  = json_decode($row->token);
                         $response = $this->checkToken($settings->access_token);
                     }
-                    
+
                     if(isset($response->error) && $response->error == 'invalid_token'){
                         $btn .= '<button class="open btn btn-secondary  btn-sm btn-secondary" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" >Re Authenticated</button>';
                     }else{
                         $btn .= '<button class="open btn btn-primary  btn-sm btn-primary disabled">Authenticated </button>';
                     }
-                        
+
                         $btn .= '<button class="open btn btn-success  btn-sm btn-success" id="refreshToken" data-remote="'.$row->id.'" onclick="refreshToken('.$row->id.')" >Refresh Token</button>';
                     }else{
                          $btn .=  '<button class="open btn btn-light btn-sm" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" style="border-radius: 4px;border: 2px solid #cdc7c7f5;"><img width="20px" style="margin-bottom:3px; margin-right:10px;display: unset;" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />Sign in with google</button>';
@@ -124,7 +123,7 @@ class GmailConnectionController extends Controller
 
     public function edit(GmailConnection $gmailconnection)
     {
-        
+
         return view('gmailconnection.edit', compact('gmailconnection'));
     }
     public function import()
@@ -143,7 +142,7 @@ class GmailConnectionController extends Controller
             if(empty($checkExist)){
                 DB::table('gmail_connection_groups')->insert(
                      array(
-                            'groups_id'     =>   $getGroupId, 
+                            'groups_id'     =>   $getGroupId,
                             'gmail_connection_id'   =>   $value
                      )
                 );
@@ -159,7 +158,7 @@ class GmailConnectionController extends Controller
                 ->update(array('group_id' => $getGroupId));
             }
         }
-       
+
     }
     public function getproxycheckedvalue(){
         $getselectedvalue=$_GET['getselectedvalue'];
@@ -195,12 +194,12 @@ class GmailConnectionController extends Controller
         $redirect = $auth_uri.'?response_type=code&access_type=offline&client_id='.$client_id.'&redirect_uri='.$redirect_uri.'&state&scope='.$scope.'&prompt=select_account consent';
         if(session()->has('connection_id')){
             session()->forget('connection_id');
-            session()->put('connection_id', $gmailId); 
+            session()->put('connection_id', $gmailId);
         }else{
             session()->put('connection_id', $gmailId);
         }
         print_r($redirect);
-        
+
     }
     public function refreshtoken(GmailConnection $connection){
         $gmailId= $_GET['id'];

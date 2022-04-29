@@ -315,11 +315,13 @@ class LeadValidatorImporter extends Component
         $headerValues[] = $this->columns;
         $keywordArray = [];
         $all_keywords = Profession::whereIn('id',$this->professionlist)->get()->pluck('keyword')->toArray();
+
         $all_promails = [];
         foreach ($all_keywords as $key => $all_keyword) {
             $keywordArray = explode('\n',$all_keyword);
             $all_promails = array_merge($all_promails,$keywordArray);
         }
+
         
         // Don't Run Validater Check Start
         if($this->is_allmail_checked == 1 && $this->check_http == 0 && $this->is_profession_checked  == 0 && $this->is_webmail_checked == 0 && $this->is_corp_checked == 0){
@@ -464,55 +466,65 @@ class LeadValidatorImporter extends Component
                        $professionValue = strtolower($res[$professionkey]);
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
-                        $word_count = str_word_count($professionValue);
+                       $word_count = str_word_count($professionValue);
                         if(!empty($website)){
                             $parse = parse_url($res[$website]);
                             $res[$website] = $parse['scheme'].'://'.$parse['host'];
                         }
                         if($word_count>1){
-                        $professionValue = explode(' ', $professionValue);
-
-                         foreach($professionValue as $value){
+                        //$professionValue = explode(' ', $professionValue);
+                         //foreach($professionValue as $value){
                             foreach($all_promails as $sinle){
-                                  $word_count = str_word_count($sinle);
-                                   if($word_count>1){
-                                    $sinle = explode(' ', $sinle);
-                                      foreach($sinle as $s){
-                                        if($s == $value ){
-                                            $webmail[]=$res;
-                                        }
-                                      }
-                                   }else{
-                                     if (in_array($value , $all_promails)) {
-                                         $webmail[]=$res;
-                                    }
-                                   }
+                                $result = strcmp($professionValue,$sinle);
+                                if($result == 0){
+                                    $webmail[]=$res;
+                                }
+                                //$word_count = str_word_count($sinle);
+                                   // if($word_count>1){
+                                   //    $sinle = explode(' ', $sinle);
+                                   //    foreach($sinle as $s){
+                                   //      if($s == $value ){
+                                   //          $webmail[]=$res;
+                                   //      }
+                                   //    }
+                                   //  }else{
+                                   //   if (in_array($value , $all_promails)) {
+                                   //       $webmail[]=$res;
+                                   //   }
+                                   //  }
+                                //echo "<pre>"; print_r($result);
                             }
                             
-                        }
+                        //}
                        
                         }else{
                              foreach($all_promails as $sinle){
-                                  $word_count = str_word_count($sinle);
-                                   if($word_count>1){
-                                    $sinle = explode(' ', $sinle);
-                                      foreach($sinle as $s){
-                                        if($s == $professionValue ){
-                                            $webmail[]=$res;
-                                        }
-                                      }
-                                   }else{
-                                     if (in_array($professionValue , $all_promails)) {
-                                         $webmail[]=$res;
-                                    }
-                                   }
+                                $result = strcmp($professionValue,$sinle);
+                                  //$word_count = str_word_count($sinle);
+                                   // if($word_count>1){
+                                   //  $sinle = explode(' ', $sinle);
+                                   //    foreach($sinle as $s){
+                                   //      if($s == $professionValue ){
+                                   //          $webmail[]=$res;
+                                   //      }
+                                   //    }
+                                   // }else{
+                                   //   if (in_array($professionValue , $all_promails)) {
+                                   //       $webmail[]=$res;
+                                   //  }
+                                   // }
+                                if($result == 0){
+                                    $webmail[]=$res;
+                                }
+                               // echo "<pre>"; print_r($result);
                             }
                            
                         }
                     }
                 }
             }
-
+            
+           
             foreach($this->csvArray as $key => $res){
                 //$res = array_unique($res);
                 array_unshift($res,$key);
@@ -530,43 +542,50 @@ class LeadValidatorImporter extends Component
                             $res[$website] = $parse['scheme'].'://'.$parse['host'];
                         }
                         if($word_count>1){
-                        $professionValue = explode(' ', $professionValue);
+                        //$professionValue = explode(' ', $professionValue);
 
-                         foreach($professionValue as $value){
+                         //foreach($professionValue as $value){
                             foreach($all_promails as $sinle){
-                                  $word_count = str_word_count($sinle);
-                                   if($word_count>1){
-                                    $sinle = explode(' ', $sinle);
-                                      foreach($sinle as $s){
-                                        if($s == $value ){
-                                            $corpmail[]=$res;
-                                        }
-                                      }
-                                   }else{
-                                     if (in_array($value , $all_promails)) {
-                                         $corpmail[]=$res;
-                                    }
-                                   }
+                                $result = strcmp($professionValue,$sinle);
+                                  // $word_count = str_word_count($sinle);
+                                  //  if($word_count>1){
+                                  //   $sinle = explode(' ', $sinle);
+                                  //     foreach($sinle as $s){
+                                  //       if($s == $value ){
+                                  //           $corpmail[]=$res;
+                                  //       }
+                                  //     }
+                                  //  }else{
+                                  //    if (in_array($value , $all_promails)) {
+                                  //        $corpmail[]=$res;
+                                  //   }
+                                  //  }
+                                if($result == 0){
+                                    $corpmail[]=$res;
+                                }
                             }
                             
-                        }
+                        //}
                        
                         }else{
                              foreach($all_promails as $sinle){
-                                  $word_count = str_word_count($sinle);
-                                   if($word_count>1){
-                                    $sinle = explode(' ', $sinle);
-                                      foreach($sinle as $s){
-                                        if($s == $professionValue ){
+                                  //$word_count = str_word_count($sinle);
+                                   // if($word_count>1){
+                                   //  $sinle = explode(' ', $sinle);
+                                   //    foreach($sinle as $s){
+                                   //      if($s == $professionValue ){
                                             
-                                            $corpmail[]=$res;
-                                        }
-                                      }
-                                   }else{
-                                     if (in_array($professionValue , $all_promails)) {
-                                         $corpmail[]=$res;
-                                    }
-                                   }
+                                   //          $corpmail[]=$res;
+                                   //      }
+                                   //    }
+                                   // }else{
+                                   //   if (in_array($professionValue , $all_promails)) {
+                                   //       $corpmail[]=$res;
+                                   //  }
+                                   // }
+                                if($result == 0){
+                                    $corpmail[]=$res;
+                                }
                             }
                            
                         }
@@ -575,6 +594,7 @@ class LeadValidatorImporter extends Component
                     
                 }
             }
+            
             $webmail = array_unique($webmail, SORT_REGULAR);
             $corpmail = array_unique($corpmail, SORT_REGULAR);
             $allValidEmails = array_merge($headerValuesSort,$webmail);

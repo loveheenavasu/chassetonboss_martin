@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -19,9 +19,9 @@
         <x-slot name="description">
             Contains Account credentials.
         </x-slot>
-        
+
         <div>
-        
+
         <x-slot name="content">
             <div class="space-y-6">
 
@@ -43,8 +43,8 @@
                             <tbody>
                             </tbody>
                         </table>
-                    
-                    
+
+
                     </div>
                 <div>
                      <div class="modal fade" id="proxyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -57,7 +57,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                           
+
                            <x-jet-label for="selectedproxy" value="{{ __('Select a Group') }}" />
                                 <x-select name="selectedproxy" id="selectedproxy" class="mt-1">
                                     <option value=""></option>
@@ -65,7 +65,7 @@
                                     <option value="{{ $proxy->id }}">
                                         {{ $proxy->name }}
                                     </option>
-                          
+
                                     @endforeach
                                 </x-select>
                                 </div>
@@ -76,7 +76,7 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="modal fade" id="groupsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -86,9 +86,9 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          
+
                           <div class="modal-body">
-                           
+
                            <x-jet-label for="selectedgroup" value="{{ __('Select a Group') }}" />
                                 <x-select name="selectedgroup" id="selectedgroup" class="mt-1" >
                                     <option value=""></option>
@@ -96,7 +96,7 @@
                                     <option value="{{ $groups->id }}">
                                         {{ $groups->name }}
                                     </option>
-                          
+
                                     @endforeach
                                 </x-select>
                                 </div>
@@ -108,7 +108,7 @@
                       </div>
                     </div>
                 </div>
-            </div>  
+            </div>
                 <input type="hidden" name="allselected" id="allselected">
                 <input type="hidden" name="singleselected" id="singleselected">
             </div>
@@ -135,7 +135,7 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
-    
+
 </div>
 <style type="text/css">
     body .shadow {
@@ -193,7 +193,7 @@
              return '<input type="checkbox" name="id[]" id="gmailcheck" value="' + $('<div/>').text(data).html() + '">';
          }
       }],
-      'order': [[1, 'asc']],
+      'order': [[1, 'desc']],
             processing: true,
             serverSide: true,
             searching: false,
@@ -212,7 +212,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-        $('#page_table').on('click', '.btn-delete[data-remote]', function (e){ 
+        $('#page_table').on('click', '.btn-delete[data-remote]', function (e){
             var id = $(this).attr('data-remote');
             e.preventDefault();
             swal({
@@ -232,7 +232,7 @@
                     alert("Gmail Connection Deleted Successfully!")
                     setTimeout(function(){
                         window.location.reload();
-                    },100); 
+                    },100);
                 }
               });
             }
@@ -252,7 +252,7 @@
                 else{
                     selectvalue=[];
                 }
-        $("#allselected").val(selectvalue);        
+        $("#allselected").val(selectvalue);
     });
 
     $(' #page_table tbody').on('change', 'input[type="checkbox"]', function(){
@@ -268,9 +268,9 @@
                         return table.row($(this).closest('tr')).data().id;
                     }).get();
             $("#allselected").val(selectvalue);
-            
+
     });
-       
+
     $('#groupbtn').on('click',function(){
         var getselectedvalue=[];
         var getselectedvalue = $('#allselected').val();
@@ -282,7 +282,7 @@
             $.ajax({
                 url: "/multiplecheck",
                 type:"get",
-                data: {getselectedvalue:getselectedvalue,getGroupId:getGroupId}, 
+                data: {getselectedvalue:getselectedvalue,getGroupId:getGroupId},
                 success: function(result){
                     window.location.reload();
                 }
@@ -291,7 +291,7 @@
         }
     });
 
-    $('#proxybtn').on('click',function(){    
+    $('#proxybtn').on('click',function(){
         var getselectedvalue=[];
         var getselectedvalue = $('#allselected').val();
         if(getselectedvalue==""){
@@ -302,14 +302,14 @@
             $.ajax({
                 url: "/multiProxycheck",
                 type:"get",
-                data: {getselectedvalue:getselectedvalue,getProxyId:getProxyId}, 
+                data: {getselectedvalue:getselectedvalue,getProxyId:getProxyId},
                 success: function(result){
-                    window.location.reload(); 
-                } 
+                    window.location.reload();
+                }
             });
         }
     });
- 
+
 });
 
 function testConnection(element) {
@@ -321,7 +321,7 @@ function testConnection(element) {
         success:function(res){
             window.location.href =res;
         }
-    });   
+    });
 }
 
 function refreshToken(element) {
@@ -340,5 +340,4 @@ function refreshToken(element) {
         }
     });
 }
-</script>   
-
+</script>

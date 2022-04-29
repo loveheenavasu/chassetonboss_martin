@@ -22,6 +22,17 @@
                 <x-jet-input-error for="file1" class="mt-2" />
                 <p class="text-gray-500"><small>Json format</small></p>
             </div>
+            <div class="col-span-6">
+                <x-jet-label for="groups_id" value="{{ __('Select a Group') }}" />
+                <x-select name="groups_id" class="mt-1" wire:model="projectlist.group_id">
+                    <option value=""></option>
+                    @foreach($this->Groups as $groups)
+                    <option value="{{ $groups->id }}">
+                        {{ $groups->name }}
+                    </option>
+                    @endforeach
+                </x-select>
+            </div>
             @if($this->uploaded)
                 <div class="col-span-6" id="row-count">
                     {{ $this->rowsCount }} rows in file.

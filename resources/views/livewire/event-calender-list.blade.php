@@ -73,11 +73,35 @@
 
                                             <div>
                                                 @if($event->schedule === 'daily')
-                                                    @foreach($event->schedule_days as $day)
+                                                    @foreach($event->schedule_days as $day)s
                                                         {{ \Illuminate\Support\Carbon::create($day)->shortDayName }}
                                                     @endforeach
                                                 @elseif($event->schedule === 'weekly')
-                                                    {{ \Illuminate\Support\Carbon::create($event->schedule_weekday)->shortDayName }}
+                                                    @switch ($event->schedule_weekday) 
+                                                      @case (1)
+                                                       {{ "monday"}}
+                                                        @break;
+                                                      @case (2)
+                                                       {{"tuesday"}}
+                                                        @break;
+                                                     @case (3)
+                                                       {{"wednesday"}}
+                                                       @break;
+                                                       @case (4)
+                                                       {{"thurdsay"}}
+                                                       @break;
+                                                        @case (5)
+                                                       {{"friday"}}
+                                                       @break;
+                                                       @case (6)
+                                                       {{"saturday"}}
+                                                       @break;
+                                                       @case (7)
+                                                       {{"sunday"}}
+                                                       @break; 
+                                                      default:
+                                                    @endswitch
+                                                                                                      
                                                 @elseif($event->schedule === 'monthly')
                                                     @if($event->schedule_monthday == '-1')
                                                         Last day

@@ -43,4 +43,22 @@ class EventlistingList extends Component
 
         $this->confirmingListingDeletion = false;
     }
+
+    public function exportInPollList(EventListing $eventlisting){
+        if (!$eventlisting->id) {
+            return;
+        }
+        return response()->streamDownload(function () use ($eventlisting) {
+            echo $eventlisting->copiedValue();
+        }, '' . $eventlisting->name . '.csv');        
+    }
+
+    public function exportNotInPollList(EventListing $eventlisting){
+        if (!$eventlisting->id) {
+            return;
+        }
+        return response()->streamDownload(function () use ($eventlisting) {
+            echo $eventlisting->copiedValue();
+        }, '' . $eventlisting->name . '.csv');        
+    }
 }

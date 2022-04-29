@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\ProjectEmail;
 use App\Models\ProjectListing;
 use App\Models\GmailConnection;
+use App\Models\Groups;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use League\Csv\Reader;
@@ -36,6 +37,7 @@ class ProjectEmailImporter extends Component
         return [
             'file' => ['required', 'file', 'mimes:csv,txt'],
             'file1' => ['required', 'file'],
+            'projectlist.group_id' => ['nullable'],
             'columns' => [
                 'array', function ($_, $columns, $fail) {
                     if (!in_array('email', array_map('strtolower', $columns))) {
@@ -52,7 +54,11 @@ class ProjectEmailImporter extends Component
             'columns.*' => ['required']
         ];
     }
+    public function getGroupsProperty(){
 
+        return Groups::get();
+
+    }
     public function mount(ProjectListing $projectlist): void
     {
         if (! $projectlist->exists) {
@@ -135,13 +141,18 @@ class ProjectEmailImporter extends Component
                 $this->finalArray[] = $record[$index];
             }
         })->filter();
+        $group_name = DB::table('groups')->where('id',$this->projectlist->group_id)->pluck('name');
         foreach($this->finalArray as $res){
-
             $insert_email = array('email' => $res);
-
-            $gmail_list_insert = array('email_id' => $res,'project_listing_id' => $this->projectlist->id);
-            DB::table('gmail_connections')->insert($gmail_list_insert);
-
+            $gmail_list_insert = array('email_id' => $res,'project_listing_id' => $this->projectlist->id,'group_id'=>$this->projectlist->group_id,'group_name'=>$group_name[0]);
+            $gmail_conn_id = DB::table('gmail_connections')->insertGetId($gmail_list_insert);
+            if($this->projectlist->group_id){
+                DB::table('gmail_connection_groups')->insert([
+                        'groups_id'=>$this->projectlist->group_id,
+                        'gmail_connection_id'=>$gmail_conn_id
+                        ]);
+            }
+            
             $id = ProjectEmail::create($insert_email)->id;
             $email_listing = array('project_listing_id'=>$this->projectlist->id,'project_email_id' => $id);
             DB::table('project_listing_emails')
