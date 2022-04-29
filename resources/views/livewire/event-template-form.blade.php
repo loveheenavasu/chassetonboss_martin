@@ -20,8 +20,8 @@
             <textarea id="spin_text" type="text" class="mt-1 block w-full" wire:model.defer="spin_text"></textarea>
             <x-jet-input-error for="spin_text" class="mt-2" />
         </div>
-        <div class="col-span-6" wire:ignore>
-            <p class="mt-3 text-sm text-gray-600">{{ __('Available placeholders') }}:</p>
+        <div class="col-span-3" wire:ignore>
+            <p class="mt-3 text-sm text-gray-600">{{ __('Available placeholders for content') }}:</p>
             <ul class="place">
                 <li class="eventplaceholder" >*First name*</li>
                 <li class="eventplaceholder">*Last name*</li>
@@ -31,6 +31,19 @@
                 <li class="eventplaceholder">*State*</li>
                 <li class="eventplaceholder">*Profession*</li>
                 <li class="eventplaceholder">*Source*</li>
+            </ul>
+        </div>
+        <div class="col-span-3" wire:ignore>
+            <p class="mt-3 text-sm text-gray-600">{{ __('Available placeholders for event name') }}:</p>
+            <ul class="place">
+                <li class="eventplaceholdername" >*First name*</li>
+                <li class="eventplaceholdername">*Last name*</li>
+                <li class="eventplaceholdername">*Company*</li>
+                <li class="eventplaceholdername">*Website*</li>
+                <li class="eventplaceholdername">*City*</li>
+                <li class="eventplaceholdername">*State*</li>
+                <li class="eventplaceholdername">*Profession*</li>
+                <li class="eventplaceholdername">*Source*</li>
             </ul>
         </div>
     </x-slot>
@@ -120,12 +133,19 @@ $(document).ready(function() {
 
 });
 $(document).on('click', '.eventplaceholder', function(event) {
-        var placholder1Val = $(this).html();
-        $('#spin_text').summernote('editor.saveRange');
-        $('#spin_text').summernote('editor.restoreRange');
-        $('#spin_text').summernote('editor.focus');
-        $('#spin_text').summernote('editor.insertText', placholder1Val); 
-    });
+    var placholder1Val = $(this).html();
+    $('#spin_text').summernote('editor.saveRange');
+    $('#spin_text').summernote('editor.restoreRange');
+    $('#spin_text').summernote('editor.focus');
+    $('#spin_text').summernote('editor.insertText', placholder1Val); 
+});
+$(document).on('click', '.eventplaceholdername', function(event) {
+    var cursorPos = $('#event_name').prop('selectionStart');
+    var v = $('#event_name').val();
+    var textBefore = v.substring(0,  cursorPos);
+    var textAfter  = v.substring(cursorPos, v.length);
+    $('#event_name').val(textBefore + $(this).html() + textAfter);
+});
 
 </script>
 

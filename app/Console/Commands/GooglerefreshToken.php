@@ -85,6 +85,27 @@ class GooglerefreshToken extends Command
                 $saveToken = array('token' => $getAccessToken );
                 $res = GmailConnection::where('id',$reftoken['id'])
                                 ->update($saveToken);
+                $checkToken = GmailConnection::where('id',$reftoken['id'])->whereRaw('token')->first()->toArray();
+
+                if(!empty($checkToken)){
+                    $gmailToken = json_decode($checkToken['token']);
+
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=".$gmailToken->access_token);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    $output = curl_exec($ch);
+                    curl_close($ch);
+                    $response = json_decode($output);
+                    if(isset($response->error) && $response->error == 'invalid_token'){
+                        $tokenVal = array('token_check' => 'invalid');
+                        $res = GmailConnection::where('id',$reftoken['id'])
+                                ->update($tokenVal);
+                    }else{
+                        $tokenVal = array('token_check' => 'valid');
+                        $res = GmailConnection::where('id',$reftoken['id'])
+                                ->update($tokenVal);
+                    }
+                }
             }
         }
     }

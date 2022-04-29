@@ -88,26 +88,20 @@ class GmailConnectionController extends Controller
                 ->addColumn('action', function ($row) {
 
                     $btn = '';
-                    if(isset($row->token)){
+                    if(isset($row->token_check)){
 
-                    $response = null;
-                    if(!empty($row->token)){
-                        $settings  = json_decode($row->token);
-                        $response = $this->checkToken($settings->access_token);
-                    }
+                        if($row->token_check == 'invalid'){
+                            $btn .= '<button class="open btn btn-secondary  btn-sm btn-secondary" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" >Re Authenticated</button>';
+                        }else{
+                            $btn .= '<button class="open btn btn-primary  btn-sm btn-primary disabled">Authenticated </button>';
+                        }
 
-                    if(isset($response->error) && $response->error == 'invalid_token'){
-                        $btn .= '<button class="open btn btn-secondary  btn-sm btn-secondary" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" >Re Authenticated</button>';
-                    }else{
-                        $btn .= '<button class="open btn btn-primary  btn-sm btn-primary disabled">Authenticated </button>';
-                    }
-
-                        $btn .= '<button class="open btn btn-success  btn-sm btn-success" id="refreshToken" data-remote="'.$row->id.'" onclick="refreshToken('.$row->id.')" >Refresh Token</button>';
-                    }else{
-                         $btn .=  '<button class="open btn btn-light btn-sm" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" style="border-radius: 4px;border: 2px solid #cdc7c7f5;"><img width="20px" style="margin-bottom:3px; margin-right:10px;display: unset;" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />Sign in with google</button>';
-                    }
-                    $btn .= '<a href="'.route('gmailconnection.edit', ['gmailconnection' => $row->id]).'" class="open btn btn-info btn-sm">Details</a>';
-                    $btn .= '<button class="open btn btn-danger  btn-sm btn-delete" id="datatable-page" data-remote="'.$row->id.'" >Delete</a>';
+                            $btn .= '<button class="open btn btn-success  btn-sm btn-success" id="refreshToken" data-remote="'.$row->id.'" onclick="refreshToken('.$row->id.')" >Refresh Token</button>';
+                        }else{
+                             $btn .=  '<button class="open btn btn-light btn-sm" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" style="border-radius: 4px;border: 2px solid #cdc7c7f5;"><img width="20px" style="margin-bottom:3px; margin-right:10px;display: unset;" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />Sign in with google</button>';
+                        }
+                        $btn .= '<a href="'.route('gmailconnection.edit', ['gmailconnection' => $row->id]).'" class="open btn btn-info btn-sm">Details</a>';
+                        $btn .= '<button class="open btn btn-danger  btn-sm btn-delete" id="datatable-page" data-remote="'.$row->id.'" >Delete</a>';
                     return $btn;
                 })
                ->addIndexColumn()
