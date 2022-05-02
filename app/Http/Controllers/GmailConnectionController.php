@@ -7,6 +7,7 @@ use App\Models\GmailConnection;
 use App\Models\Groups;
 use App\Models\Listing;
 use App\Models\ProjectListing;
+use App\Models\GmailFilter;
 use DB;
 use DataTables;
 use Google_Client;
@@ -61,17 +62,36 @@ class GmailConnectionController extends Controller
             GmailConnection::where('id',$session)
                             ->update($saveToken);
 
+            $tokenVal = array('token_check' => 'valid');
+            GmailConnection::where('id',$session)
+                                ->update($tokenVal);
+
+
         }
         if ($request->ajax())
         {
            $searchvalue = $request->search['value'];
+           $token_check = $request->token_check;
+           $group_name = $request->group_name; 
+           if($group_name != NULL && $token_check != NULL ){
+                $allGroupInfos = GmailConnection:: where([
+                                        ['token_check', '=', $token_check],
+                                        ['group_name', '=', $group_name]])
+                                        ->orderBy('id', 'DESC')->get();
+           }elseif($group_name != NULL ){
+                $allGroupInfos = GmailConnection::where('group_name',$group_name)->orderBy('id', 'DESC')->get();
+           }elseif($token_check != NULL){
+                $allGroupInfos = GmailConnection::where('token_check',$token_check)->orderBy('id', 'DESC')->get();
+           }else{
+                $allGroupInfos = GmailConnection::orderBy('id', 'DESC')->get();
+           }
+
            $val = explode('/',$searchvalue);
            if(isset($val[3])){
             $value = $val[3];
            }else{
             $value = $val[0];
            }
-            $allGroupInfos = GmailConnection::orderBy('id', 'DESC')->get();
             return Datatables::of($allGroupInfos)
                 ->addColumn('select', function ($row) {
                     return '';
@@ -96,7 +116,7 @@ class GmailConnectionController extends Controller
                             $btn .= '<button class="open btn btn-primary  btn-sm btn-primary disabled">Authenticated </button>';
                         }
 
-                            $btn .= '<button class="open btn btn-success  btn-sm btn-success" id="refreshToken" data-remote="'.$row->id.'" onclick="refreshToken('.$row->id.')" >Refresh Token</button>';
+                        $btn .= '<button class="open btn btn-success  btn-sm btn-success" id="refreshToken" data-remote="'.$row->id.'" onclick="refreshToken('.$row->id.')" >Refresh Token</button>';
                         }else{
                              $btn .=  '<button class="open btn btn-light btn-sm" id="testconnection" data-remote="'.$row->id.'" onclick="testConnection('.$row->id.')" style="border-radius: 4px;border: 2px solid #cdc7c7f5;"><img width="20px" style="margin-bottom:3px; margin-right:10px;display: unset;" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />Sign in with google</button>';
                         }
@@ -231,7 +251,6 @@ class GmailConnectionController extends Controller
         }
     }
     public function checkToken($token){
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=".$token);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -239,4 +258,38 @@ class GmailConnectionController extends Controller
         curl_close($ch);
         return json_decode($output);
     }
+
+    public function listAllGroups(){
+       $allGroups = Groups::get();
+       if(!empty($allGroups)){
+            echo '<option value="">Select Group</option>';
+            foreach($allGroups as $allGroup){
+                echo '<option value="'.$allGroup->name.'">'.$allGroup->name.'</option>';
+            }
+       }
+    }
+
+    public function saveGmailConnectionFilter(){
+        $filter_name = isset($_GET['filter_name']) ? $_GET['filter_name'] : '';
+        $group_name = isset($_GET['group_name']) ? $_GET['group_name'] : '';
+        $token_check = isset($_GET['token_check']) ? $_GET['token_check'] : '';
+        $insertData = array('name' => $filter_name,'group_name' => $group_name,'token_check' => $token_check);
+
+        $result = GmailFilter::insert($insertData);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    } 
+
+    public function listSavedFilter(){
+        $allFilters = GmailFilter::get();
+        if(!empty($allFilters)){
+            echo '<option value="">Select filter</option>';
+            foreach($allFilters as $allFilter){
+                echo '<option value="'.$allFilter->id.'" data-group="'.$allFilter->group_name.'" data-token-check="'.$allFilter->token_check.'">'.$allFilter->name.'</option>';
+            }
+        }
+    }   
 }

@@ -33,6 +33,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
     Route::get('test/generate-emails', [\App\Http\Controllers\TestController::class, 'generateEmails']);
     Route::resource('gmailconnection', \App\Http\Controllers\GmailConnectionController::class)->only(['index', 'create', 'edit']);
     Route::get('deletegmailconnection', [\App\Http\Controllers\GmailConnectionController::class, 'deletegmailconnection']);
+    Route::get('getallgorups', [\App\Http\Controllers\GmailConnectionController::class, 'listAllGroups']);
+    Route::get('savegmailfilter', [\App\Http\Controllers\GmailConnectionController::class, 'saveGmailConnectionFilter']);
+    Route::get('listsavedfilter', [\App\Http\Controllers\GmailConnectionController::class, 'listSavedFilter']);
     Route::get('testconnection', [\App\Http\Controllers\GmailConnectionController::class, 'testconnection']);
     Route::get('refreshtoken', [\App\Http\Controllers\GmailConnectionController::class, 'refreshtoken']);
     Route::get('multiplecheck', [\App\Http\Controllers\GmailConnectionController::class, 'getcheckedvalue']);

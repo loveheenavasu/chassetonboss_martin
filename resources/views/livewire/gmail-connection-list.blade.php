@@ -2,13 +2,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 
     <x-action-section>
@@ -23,14 +23,34 @@
         <div>
 
         <x-slot name="content">
-            <div class="space-y-6">
+            <div class="space-y-6 position-relative">
+                <div class="datatable-filter">
+                    <div class="gmails-filter">
+                        <label class="text-lg font-medium text-gray-900">Save Filter:</label>
+                        <select class="form-select" name="saved_filter" id="saved_filter">
+                            <option value="">Select filter</option>
+                        </select>
 
-                <button type="button" name="assigngroup" id="assigngroup" class="btn btn-primary" data-toggle="modal" data-target="#groupsModal">
-                      Groups
-                </button>
+                        <label class="text-lg font-medium text-gray-900">Filter:</label>
+                        <select class="form-select" name="group_name" id="group_name">
+                        </select>
+
+                        <select class="form-select" name="token_check" id="token_check">
+                          <option value="">Select token status</option>
+                          <option value="valid">Valid</option>
+                          <option value="invalid">Invalid</option>
+                        </select>
+                        <button type="button" name="assigngroup" id="save-filter" class="btn btn-info" data-toggle="modal" data-target="#gmailFilterModal">
+                            Save Filter
+                        </button>
+                    </div>
+                    <button type="button" name="assigngroup" id="assigngroup" class="btn btn-primary" data-toggle="modal" data-target="#groupsModal">
+                        Groups
+                    </button>
+                </div>
                 <div class="items-center">
                     <div class="container-fluid">
-                        <table class="table table-bordered" id="page_table">
+                        <table class="table table-bordered gmail-con-data" id="page_table">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="select_all" id="checkdata"></th>
@@ -43,21 +63,18 @@
                             <tbody>
                             </tbody>
                         </table>
-
-
                     </div>
                 <div>
-                     <div class="modal fade" id="proxyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
+                <div class="modal fade" id="proxyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Proxy List</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Proxy List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                           <div class="modal-body">
                            <x-jet-label for="selectedproxy" value="{{ __('Select a Group') }}" />
                                 <x-select name="selectedproxy" id="selectedproxy" class="mt-1">
                                     <option value=""></option>
@@ -68,17 +85,17 @@
 
                                     @endforeach
                                 </x-select>
-                                </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" name="proxybtn" id="proxybtn" class="btn btn-primary">Save changes</button>
-                          </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" name="proxybtn" id="proxybtn" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
-                      </div>
                     </div>
+                </div>
 
-                    <div class="modal fade" id="groupsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
+                <div class="modal fade" id="groupsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Groups list</h5>
@@ -87,35 +104,54 @@
                             </button>
                           </div>
 
-                          <div class="modal-body">
-
-                           <x-jet-label for="selectedgroup" value="{{ __('Select a Group') }}" />
-                                <x-select name="selectedgroup" id="selectedgroup" class="mt-1" >
+                            <div class="modal-body">
+                                <x-jet-label for="selectedgroup" value="{{ __('Select a Group') }}" />
+                                    <x-select name="selectedgroup" id="selectedgroup" class="mt-1" >
                                     <option value=""></option>
                                     @foreach($this->Groups as $groups)
                                     <option value="{{ $groups->id }}">
                                         {{ $groups->name }}
                                     </option>
-
                                     @endforeach
                                 </x-select>
-                                </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" name="groupbtn" id="groupbtn"class="btn btn-primary">Save changes</button>
-                          </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" name="groupbtn" id="groupbtn"class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="gmailFilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Filter Name</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+                            <div class="modal-body">
+                                <x-jet-label for="selectedgroup" value="{{ __('Enter filter name') }}" />
+                                <x-jet-input id="filtername" type="text" class="mt-1 block w-full" autofocus />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" name="filterbtnsave" id="filterbtnsave"class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-                <input type="hidden" name="allselected" id="allselected">
-                <input type="hidden" name="singleselected" id="singleselected">
-            </div>
-        </x-slot>
+        </div>
+        <input type="hidden" name="allselected" id="allselected">
+        <input type="hidden" name="singleselected" id="singleselected">
+        </div>
+    </x-slot>
     </x-action-section>
 
-<!-- Delete Confirmation Modal -->
+    <!-- Delete Confirmation Modal -->
     <x-jet-confirmation-modal wire:model="confirmingGmailConnectionDeletion">
         <x-slot name="title">
             {{ __('Delete connections') }}
@@ -175,9 +211,45 @@
     button.open.btn.btn-primary.btn-sm.btn-primary.disabled {
         cursor: not-allowed;
     }
+
+    .datatable-filter #assigngroup {
+        float: none;
+    }
+    .datatable-filter .gmails-filter {
+        margin-right: 10px;
+    }
+    .datatable-filter {
+        display: flex;
+        align-items: end;
+        position: absolute;
+        right: 15px;
+        top: -10px;
+        z-index: 1;
+    }
+    table.gmail-con-data {
+        margin-top: 40px !important;
+    }
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $.ajax({
+            url:'/getallgorups',
+            type:'get',
+            data:'',
+            success:function(response){
+               $('#group_name').html(response);
+            }
+        });
+
+        $.ajax({
+            url:'/listsavedfilter',
+            type:'get',
+            data:'',
+            success:function(response){
+               $('#saved_filter').html(response);
+            }
+        });
         var selectedvalue = [];
         var allselected ;
         var allselectedval = [];
@@ -185,15 +257,15 @@
 
         var table = $('#page_table').DataTable({
             'columnDefs': [{
-         'targets': 0,
-         'searchable': false,
-         'orderable': false,
-         'className': 'dt-body-center',
-         'render': function (data, type, full, meta){
-             return '<input type="checkbox" name="id[]" id="gmailcheck" value="' + $('<div/>').text(data).html() + '">';
-         }
-      }],
-      'order': [[1, 'desc']],
+            'targets': 0,
+            'searchable': false,
+            'orderable': false,
+            'className': 'dt-body-center',
+            'render': function (data, type, full, meta){
+                return '<input type="checkbox" name="id[]" id="gmailcheck" value="' + $('<div/>').text(data).html() + '">';
+            }
+        }],
+        'order': [[1, 'desc']],
             processing: true,
             serverSide: true,
             searching: false,
@@ -203,7 +275,13 @@
             ordering: true,
             iDisplayLength: 25,
             lengthMenu: [10, 25, 50,100,250,500,'All'],
-            ajax: "/gmailconnection",
+            ajax: {
+                url: "/gmailconnection",
+                data: function (d) {
+                    d.group_name = $('#group_name').val(),
+                    d.token_check = $('#token_check').val()
+                }
+            },
             columns: [
                 {data: 'select', select: 'select'},
                 {data: 'id', name: 'id'},
@@ -239,35 +317,46 @@
           });
         });
 
+        $('#group_name,#token_check').change(function(){
+            table.draw();
+        });
+
+        $("#saved_filter").on('change', function(){
+            var group_name = $('option:selected', this).attr('data-group');
+            var token_check = $('option:selected', this).attr('data-token-check');
+            $('#group_name').val(group_name);
+            $('#token_check').val(token_check);
+            table.draw();
+        });
+
     $('#checkdata').on('click', function(){
         var rows = table.rows({ 'search': 'applied' }).nodes();
         $('input[type="checkbox"]', rows).prop('checked', this.checked);
-                if (this.checked) {
-                    $('input[type="checkbox"]:checked:not(:first)').each(function () {
-                        var id= table.row($(this).closest('tr')).data().id;
-                        selectvalue.push(id);
+            if (this.checked) {
+                $('input[type="checkbox"]:checked:not(:first)').each(function () {
+                    var id= table.row($(this).closest('tr')).data().id;
+                    selectvalue.push(id);
 
-                    });
-                }
-                else{
-                    selectvalue=[];
-                }
+                });
+            }
+            else{
+                selectvalue=[];
+            }
         $("#allselected").val(selectvalue);
     });
 
     $(' #page_table tbody').on('change', 'input[type="checkbox"]', function(){
         if (!this.checked) {
-                    $('#checkdata').prop("checked", false);
-                } else {
-                    if ($('input[type="checkbox"]:checked').length == $('#page_table tbody tr').length) {
-                        $('#checkdata').prop("checked", true);
-                    }
-                }
-
-                selectvalue = $(':checkbox[type=checkbox]:checked').map(function() {
-                        return table.row($(this).closest('tr')).data().id;
-                    }).get();
-            $("#allselected").val(selectvalue);
+            $('#checkdata').prop("checked", false);
+        } else {
+            if ($('input[type="checkbox"]:checked').length == $('#page_table tbody tr').length) {
+                $('#checkdata').prop("checked", true);
+            }
+        }
+        selectvalue = $(':checkbox[type=checkbox]:checked').map(function() {
+            return table.row($(this).closest('tr')).data().id;
+        }).get();
+        $("#allselected").val(selectvalue);
 
     });
 
@@ -286,7 +375,6 @@
                 success: function(result){
                     window.location.reload();
                 }
-
             });
         }
     });
@@ -309,6 +397,41 @@
             });
         }
     });
+
+    $("#filterbtnsave").on('click', function(){
+        var group_name = $('#group_name').val();
+        var token_check = $('#token_check').val();
+        var filter_name = $("#filtername").val();
+        if(group_name == "" && token_check == ""){
+            alert("Please select any filter");
+        }else if(filter_name == ""){
+            alert("Please enter the filter name");
+        }else{
+            $.ajax({
+                url: "/savegmailfilter",
+                type:"get",
+                data: {filter_name:filter_name,group_name:group_name,token_check:token_check},
+                success: function(result){
+                    if(result == true){
+                        swal({
+                          title: `Filter Added successfully!`,
+                          icon: "success",
+                          showConfirmButton: false,
+                        });
+                        $("#gmailFilterModal").modal('hide');
+                    }else{
+                        swal({
+                          title: `Something went wrong!`,
+                          icon: "error",
+                          showConfirmButton: false,
+                        });
+                        $("#gmailFilterModal").modal('hide');
+                    }
+                }
+            });
+        } 
+
+    })
 
 });
 
@@ -335,7 +458,7 @@ function refreshToken(element) {
               title: `Token refresh successfully!`,
               icon: "success",
               showConfirmButton: false,
-           });
+            });
             $('#page_table').DataTable().ajax.reload();
         }
     });
