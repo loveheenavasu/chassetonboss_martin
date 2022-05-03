@@ -109,7 +109,7 @@ class EventCalenderList extends Component
         $event->update([
             'status' => Event::STATUS_RUNNING
         ]);
-        $this->eventEmailCreation($event);
+        // $this->eventEmailCreation($event);
     }
 
     public function stopEvent(Event $event): void
@@ -209,6 +209,7 @@ class EventCalenderList extends Component
                     ->leftjoin('event as ev','ev.id','=','gmail_connection_groups.event_id')
                     ->where('gmail_connection_groups.sync_status','no')
                     ->whereNotNull('g.token')
+                    ->where('g.token_check','valid')
                     ->where('event_id',$eventId)
                     ->inRandomOrder()
                     ->first();
@@ -254,7 +255,7 @@ class EventCalenderList extends Component
     
     public function eventEmailCreation(){
         // $group = $this->argument('event_id');
-        $group = 49;
+        $group = 51;
         $allRules = Event::where('id',$group)->get();
         $allemail = [];
         if(!empty($allRules)){
@@ -293,6 +294,7 @@ class EventCalenderList extends Component
 
                         // Get all groups from multiple list start
                         $all_connections = $this->GetAllGroups($group);
+                        echo "<pre>"; print_r($all_connections); echo "</pre>"; die;
                         $gmail_id = $all_connections->email_id;
                         // Get all groups from multiple list end
 

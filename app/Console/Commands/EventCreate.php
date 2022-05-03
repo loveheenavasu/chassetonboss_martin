@@ -178,6 +178,7 @@ class EventCreate extends Command
                     ->leftjoin('event as ev','ev.id','=','gmail_connection_groups.event_id')
                     ->where('gmail_connection_groups.sync_status','no')
                     ->whereNotNull('g.token')
+                    ->where('g.token_check','valid')
                     ->where('event_id',$eventId)
                     ->inRandomOrder()
                     ->first();

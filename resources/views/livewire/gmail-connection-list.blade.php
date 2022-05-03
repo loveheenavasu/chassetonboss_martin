@@ -26,7 +26,7 @@
             <div class="space-y-6 position-relative">
                 <div class="datatable-filter">
                     <div class="gmails-filter">
-                        <label class="text-lg font-medium text-gray-900">Save Filter:</label>
+                        <label class="text-lg font-medium text-gray-900">Saved Filter:</label>
                         <select class="form-select" name="saved_filter" id="saved_filter">
                             <option value="">Select filter</option>
                         </select>
@@ -37,8 +37,9 @@
 
                         <select class="form-select" name="token_check" id="token_check">
                           <option value="">Select token status</option>
-                          <option value="valid">Valid</option>
-                          <option value="invalid">Invalid</option>
+                          <option value="valid">Authenticated</option>
+                          <option value="notauth">Not authenticated</option>
+                          <option value="suspended">Suspended</option>
                         </select>
                         <button type="button" name="assigngroup" id="save-filter" class="btn btn-info" data-toggle="modal" data-target="#gmailFilterModal">
                             Save Filter

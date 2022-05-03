@@ -64,6 +64,7 @@
                         serverside: true,
                         searching: true,
                         paging: true,
+                        responsive: true,
                         aaSorting: [[0, 'desc']],
                         ordering: true,
                         iDisplayLength: 100,

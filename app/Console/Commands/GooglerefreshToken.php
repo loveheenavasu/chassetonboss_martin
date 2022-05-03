@@ -97,7 +97,7 @@ class GooglerefreshToken extends Command
                     curl_close($ch);
                     $response = json_decode($output);
                     if(isset($response->error) && $response->error == 'invalid_token'){
-                        $tokenVal = array('token_check' => 'invalid');
+                        $tokenVal = array('token_check' => 'suspended');
                         $res = GmailConnection::where('id',$reftoken['id'])
                                 ->update($tokenVal);
                     }else{
