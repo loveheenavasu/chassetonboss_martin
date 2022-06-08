@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Template;
-
+use App\Models\Tokens;
 final class TemplateController extends Controller
 {
     public function index()
@@ -14,6 +14,10 @@ final class TemplateController extends Controller
 
     public function create()
     {
+        // $tokens = Tokens::get();
+        // $template['create'] = '';
+        // $template['token'] = $tokens;
+      
         return view('templates.create');
     }
 

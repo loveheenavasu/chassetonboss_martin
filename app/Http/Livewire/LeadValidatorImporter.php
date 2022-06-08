@@ -331,24 +331,29 @@ class LeadValidatorImporter extends Component
                 $count = count($this->allWebEmail);
                 for($i = 0;$i<$count; $i++){
                     if($key == $this->allWebEmail[$i]){
-                        if(!empty($website)){
+                        if(!empty($res[$website])){
+                            //echo "<pre>"; print_r($res);
                             $parse = parse_url($res[$website]);
-                            $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                            if(!empty($parse['scheme']) && !empty($parse['host'])){
+                                $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                             }
                         }
                         $webmail[]=$res;
                     }
                 }
             }
-
+          
             foreach($this->csvArray as $key => $res){
                 //$res = array_unique($res);
                 array_unshift($res,$key);
                 $count = count($this->allCorpEmail);
                 for($i = 0;$i<$count; $i++){
                     if($key == $this->allCorpEmail[$i]){
-                        if(!empty($website)){
+                        if(!empty($res[$website])){
                             $parse = parse_url($res[$website]);
-                            $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                            if(!empty($parse['scheme']) && !empty($parse['host'])){
+                                $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                             }
                         }
                         $corpmail[]=$res; 
                     }
@@ -463,13 +468,25 @@ class LeadValidatorImporter extends Component
                 $count = count($this->allWebEmail);
                 for($i = 0;$i<$count; $i++){
                     if($key == $this->allWebEmail[$i]){
-                       $professionValue = strtolower($res[$professionkey]);
+                        
+                        if(!empty($res[$professionkey])){
+                         $professionValue = strtolower($res[$professionkey]);   
+                         }else{
+                            $professionValue= "";
+                         }
+                       
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
                        $word_count = str_word_count($professionValue);
-                        if(!empty($website)){
+                       
+                       
+                        if(!empty($res[$website])){
                             $parse = parse_url($res[$website]);
-                            $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                            if(!empty($parse['scheme']) && !empty($parse['host'])){
+                                $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                             }
+                        }else{
+                            $res[$website] = '';
                         }
                         if($word_count>1){
                         //$professionValue = explode(' ', $professionValue);
@@ -531,15 +548,20 @@ class LeadValidatorImporter extends Component
                 $count = count($this->allCorpEmail);
                 for($i = 0;$i<$count; $i++){
                     if($key == $this->allCorpEmail[$i]){
-
-                       $professionValue = strtolower($res[$professionkey]);
+                        if(!empty($res[$professionkey])){
+                         $professionValue = strtolower($res[$professionkey]);   
+                         }else{
+                            $professionValue = "";
+                         }
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
                         $all_promails =  array_map('trim', $all_promails);
-                        if(!empty($website)){
+                        if(!empty($res[$website])){
                             $parse = parse_url($res[$website]);
-                            $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                            if(!empty($parse['scheme']) && !empty($parse['host'])){
+                                $res[$website] = $parse['scheme'].'://'.$parse['host'];
+                             }
                         }
                         if($word_count>1){
                         //$professionValue = explode(' ', $professionValue);
@@ -626,7 +648,11 @@ class LeadValidatorImporter extends Component
                             $parse = parse_url($url);
                             $url = substr($url, 0, strrpos( $url, '/'));
                             if(!empty($parse)){
-                       $professionValue = strtolower($res[$professionkey]);
+                        if(!empty($res[$professionkey])){
+                         $professionValue = strtolower($res[$professionkey]);   
+                         }else{
+                            $professionValue = "";
+                         }
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -752,7 +778,11 @@ class LeadValidatorImporter extends Component
                             $parse = parse_url($url);
                             $url = substr($url, 0, strrpos( $url, '/'));
                             if(!empty($parse)){
-                                $professionValue = strtolower($res[$professionkey]);
+                                if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);   
+                            }else{
+                                $professionValue = "";
+                            }
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -901,7 +931,11 @@ class LeadValidatorImporter extends Component
                             $parse = parse_url($url);
                             $url = substr($url, 0, strrpos( $url, '/'));
                             if(!empty($parse)){
-                                $professionValue = strtolower($res[$professionkey]);
+                                if(!empty($res[$professionkey])){
+                                    $professionValue = strtolower($res[$professionkey]);   
+                                 }else{
+                                    $professionValue = "";
+                                    }
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -1026,7 +1060,11 @@ class LeadValidatorImporter extends Component
                             $parse = parse_url($url);
                             $url = substr($url, 0, strrpos( $url, '/'));
                             if(!empty($parse)){
-                             $professionValue = strtolower($res[$professionkey]);
+                             if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);   
+                            }else{
+                            $professionValue= "";
+                            }
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -1427,7 +1465,12 @@ class LeadValidatorImporter extends Component
                                 $parse = parse_url($url);
                                 $url = substr($url, 0, strrpos( $url, '/'));
                                 if(!empty($parse)){
-                        $professionValue = strtolower($res[$professionkey]);
+                                    if(!empty($res[$professionkey])){
+                                        $professionValue = strtolower($res[$professionkey]);
+                                    }else{
+                                      $professionValue =""; 
+                                    }
+                            
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -1537,7 +1580,11 @@ class LeadValidatorImporter extends Component
                                 $parse = parse_url($url);
                                 $url = substr($url, 0, strrpos( $url, '/'));
                                 if(!empty($parse)){
-                                    $professionValue = strtolower($res[$professionkey]);
+                                    if(!empty($res[$professionkey])){
+                                        $professionValue = strtolower($res[$professionkey]);
+                                    }else{
+                                    $professionValue = "";
+                                }
                        
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -1648,7 +1695,12 @@ class LeadValidatorImporter extends Component
                                 $parse = parse_url($url);
                                 $url = substr($url, 0, strrpos( $url, '/'));
                                 if(!empty($parse['host'])){
-                                    $professionValue = strtolower($res[$professionkey]);
+                                    if(!empty($res[$professionkey])){
+                                        $professionValue = strtolower($res[$professionkey]);
+                                    }else{
+                                     $professionValue ="";   
+                                    }
+                                    
                          
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
@@ -1815,7 +1867,12 @@ class LeadValidatorImporter extends Component
                                 $parse = parse_url($url);
                                 $url = substr($url, 0, strrpos( $url, '/'));
                                 if(!empty($parse)){
-                                    $professionValue = strtolower($res[$professionkey]);
+                                    if(!empty($res[$professionkey])){
+                                      $professionValue = strtolower($res[$professionkey]);  
+                                  }else{
+                                    $professionValue ="";
+                                  }
+                                    
 
                                     $word_count = str_word_count($professionValue);
                        
@@ -1869,7 +1926,12 @@ class LeadValidatorImporter extends Component
                                 $parse = parse_url($url);
                                 $url = substr($url, 0, strrpos( $url, '/'));
                                 if(!empty($parse)){
-                                    $professionValue = strtolower($res[$professionkey]);
+                                    if(!empty($res[$professionkey])){
+                                     $professionValue = strtolower($res[$professionkey]);   
+                                 }else{
+                                    $professionValue = "";
+                                 }
+                                    
                                     $word_count = str_word_count($professionValue);
                        
                                     if($word_count>1){
@@ -1918,7 +1980,12 @@ class LeadValidatorImporter extends Component
                                 $parse = parse_url($url);
                                 $url = substr($url, 0, strrpos( $url, '/'));
                                 if(!empty($parse)){
+                                     if(!empty($res[$professionkey])){
                                     $professionValue = strtolower($res[$professionkey]);
+                                    }else{
+                                    $professionValue = "";
+                                    }
+                                    
                                     $word_count = str_word_count($professionValue);
                        
                                     if($word_count>1){
@@ -1999,9 +2066,13 @@ class LeadValidatorImporter extends Component
                 array_unshift($res,$key);
                 $count = count($this->allCorpEmail);
                     for($i = 0;$i<$count; $i++){
-                        $professionValue = strtolower($res[$professionkey]); 
+                         if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                            }else{
+                            $professionValue = "";
+                            } 
                         if($key == $this->allCorpEmail[$i]){
-                            if(!empty($website)){
+                            if(!empty($res[$website])){
                                 $parse = parse_url($res[$website]);
                                 $res[$website] = $parse['scheme'].'://'.$parse['host'];
                             }
@@ -2021,7 +2092,11 @@ class LeadValidatorImporter extends Component
                         $validation_check = json_decode($response);
 
                         if($validation_check->result == "invalid"){
-                           $professionValue = strtolower($res[$professionkey]);
+                            if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                            }else{
+                            $professionValue = "";
+                            }
                            $all_promails =  array_map('strtolower', $all_promails);
                            $all_promails =  array_map('trim', $all_promails);
                            $word_count = str_word_count($professionValue);
@@ -2067,7 +2142,11 @@ class LeadValidatorImporter extends Component
                                    
                          
                         }elseif($validation_check->result == "unknown"){
+                             if(!empty($res[$professionkey])){
                             $professionValue = strtolower($res[$professionkey]);
+                            }else{
+                            $professionValue = "";
+                            }
 
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
@@ -2121,7 +2200,11 @@ class LeadValidatorImporter extends Component
                         
                             if($word_count>1){
 
+                            if(!empty($res[$professionkey])){
                             $professionValue = strtolower($res[$professionkey]);
+                            }else{
+                            $professionValue = "";
+                            }
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
                         $word_count = str_word_count($professionValue);
@@ -2209,10 +2292,14 @@ class LeadValidatorImporter extends Component
                 array_unshift($res,$key);
                 $count = count($this->allWebEmail);
                     for($i = 0;$i<$count; $i++){
-                        $professionValue = strtolower($res[$professionkey]);
+                        if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                        }else{
+                        $professionValue = "";
+                        }
 
                         if($key == $this->allWebEmail[$i]){
-                            if(!empty($website)){
+                            if(!empty($res[$website])){
                                 $parse = parse_url($res[$website]);
                                 $res[$website] = $parse['scheme'].'://'.$parse['host'];
                             }
@@ -2232,7 +2319,11 @@ class LeadValidatorImporter extends Component
                         $validation_check = json_decode($response);
                         if($validation_check->result == "invalid"){
                             
-                           $professionValue = strtolower($res[$professionkey]);
+                            if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                        }else{
+                        $professionValue = "";
+                        }
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
                         $word_count = str_word_count($professionValue);
@@ -2281,7 +2372,11 @@ class LeadValidatorImporter extends Component
                         
                         }elseif($validation_check->result == "unknown"){
 
-                           $professionValue = strtolower($res[$professionkey]);
+                           if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                        }else{
+                        $professionValue = "";
+                        }
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
                         $word_count = str_word_count($professionValue);
@@ -2330,7 +2425,11 @@ class LeadValidatorImporter extends Component
 
                         }else{
 
-                           $professionValue = strtolower($res[$professionkey]);
+                            if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                        }else{
+                        $professionValue = "";
+                        }
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
                         $word_count = str_word_count($professionValue);
@@ -2417,7 +2516,7 @@ class LeadValidatorImporter extends Component
                 $count = count($this->allWebEmail);
                     for($i = 0;$i<$count; $i++){
                         if($key == $this->allWebEmail[$i]){
-                            if(!empty($website)){
+                            if(!empty($res[$website])){
                                 $parse = parse_url($res[$website]);
                                 $res[$website] = $parse['scheme'].'://'.$parse['host'];
                             }
@@ -2480,7 +2579,7 @@ class LeadValidatorImporter extends Component
                 $count = count($this->allCorpEmail);
                 for($i = 0;$i<$count; $i++){
                 if($key == $this->allCorpEmail[$i]){
-                    if(!empty($website)){
+                    if(!empty($res[$website])){
                         $parse = parse_url($res[$website]);
                         $res[$website] = $parse['scheme'].'://'.$parse['host'];
                     }
@@ -2625,11 +2724,15 @@ class LeadValidatorImporter extends Component
                 $count = count($this->allCorpEmail);
                 for($i = 0;$i<$count; $i++){
                     if($key == $this->allCorpEmail[$i]){
-                        if(!empty($website)){
+                        if(!empty($res[$website])){
                             $parse = parse_url($res[$website]);
                             $res[$website] = $parse['scheme'].'://'.$parse['host'];
                         }
-                        $professionValue = strtolower($res[$professionkey]);
+                         if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                        }else{
+                        $professionValue = "";
+                        }
                         $word_count = str_word_count($professionValue);
                         $all_promails =  array_map('strtolower', $all_promails);
                         $all_promails =  array_map('trim', $all_promails);
@@ -2703,11 +2806,15 @@ class LeadValidatorImporter extends Component
 
                 for($i = 0;$i<$count; $i++){
                     if($key == $this->allWebEmail[$i]){
-                        if(!empty($website)){
+                        if(!empty($res[$website])){
                             $parse = parse_url($res[$website]);
                             $res[$website] = $parse['scheme'].'://'.$parse['host'];
                         }
-                       $professionValue = strtolower($res[$professionkey]);
+                        if(!empty($res[$professionkey])){
+                            $professionValue = strtolower($res[$professionkey]);
+                        }else{
+                        $professionValue = "";
+                        }
                        $all_promails =  array_map('strtolower', $all_promails);
                        $all_promails =  array_map('trim', $all_promails);
                         $word_count = str_word_count($professionValue);
@@ -2777,7 +2884,7 @@ class LeadValidatorImporter extends Component
             foreach($this->csvArray as $key => $res){
                 //$res = array_unique($res);
                 array_unshift($res,$key);
-                if(!empty($website)){
+                if(!empty($res[$website])){
                     $parse = parse_url($res[$website]);
                     $res[$website] = $parse['scheme'].'://'.$parse['host'];
                 }

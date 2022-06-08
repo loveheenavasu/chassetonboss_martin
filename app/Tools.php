@@ -10,6 +10,8 @@ class Tools
     const CUTTER = 'cutter';
     const EVENT_CALENDER = 'event_calender';
     const LEAD_VALIDATOR = 'leadvalidator';
+    const LANDING_PAGE = 'landingpage';
+
 
 
     public static function all(): array
@@ -19,7 +21,8 @@ class Tools
             self::SYNDICATION,
             self::DRIP_FEED,
             self::CUTTER,
-            self::EVENT_CALENDER
+            self::EVENT_CALENDER,
+            self::LANDING_PAGE
         ];
     }
 

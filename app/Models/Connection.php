@@ -42,6 +42,11 @@ class Connection extends Model
                     self::TYPE_MAUTIC,
                     self::TYPE_WEBHOOK
                 ];
+            case Tools::LANDING_PAGE:   
+             return [
+                    self::TYPE_FTP,
+                    self::TYPE_SFTP,
+                ];
             default:
                 return [];
         }

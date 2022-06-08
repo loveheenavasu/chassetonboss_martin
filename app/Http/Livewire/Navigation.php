@@ -181,7 +181,36 @@ class Navigation extends NavigationDropdown
                     
 
                 ];
-                  break;
+                break;
+                case Tools::LANDING_PAGE:
+                $links = [
+                    [
+                        'href' => route('connections.index'),
+                        'label' => __('Connections'),
+                        'active' => request()->routeIs('connections.*')
+                    ],
+                    [
+                        'href' => route('templates.index'),
+                        'label' => __('Templates'),
+                        'active' => request()->routeIs('templates.*')
+                    ],
+                    [
+                        'href' => route('pages.index'),
+                        'label' => __('Pages'),
+                        'active' => request()->routeIs('pages.*')
+                    ],
+                    [
+                        'href' => route('tokens.index'),
+                        'label' => __('Token'),
+                        'active' => request()->routeIs('tokens.*')
+                    ],
+                    [
+                        'href' => route('tokenprofile.index'),
+                        'label' => __('Profile'),
+                        'active' => request()->routeIs('tokenprofile.*')
+                    ]
+                ];
+                 break;
             default:
                 $links = [];
                 break;
@@ -215,6 +244,10 @@ class Navigation extends NavigationDropdown
                 'key' => 'leadvalidator',
                 'label' => 'Lead Validator'
             ]
+            // [
+            //     'key' => 'landingpage',
+            //     'label' => 'Landing Page 3.0'
+            // ],
         ];
     }
     public function selectTool($tool): void

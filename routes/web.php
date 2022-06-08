@@ -48,6 +48,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
     Route::resource('connections', \App\Http\Controllers\ConnectionController::class)->only(['index', 'create', 'show']);
     
     Route::resource('leadvalidator', \App\Http\Controllers\LeadValidatorController::class)->only(['index', 'create', 'show']);
+    Route::resource('landingpage', \App\Http\Controllers\LandingPageController::class)->only(['index', 'create', 'show']);
     Route::resource('listings', \App\Http\Controllers\ListingController::class)->only(['index', 'create', 'show']);
     Route::get('deletelist', [\App\Http\Controllers\ListingController::class, 'deletelist']);
     Route::get('notes', [\App\Http\Controllers\ListingController::class, 'savenotesvalue']);
@@ -95,8 +96,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
     //Premium Pages
     Route::resource('premiumpages', \App\Http\Controllers\PremiumPagesController::class)    ->only(['index', 'create', 'show', 'edit']);
     Route::get('deletepremiumpage', [\App\Http\Controllers\PremiumPagesController::class, 'deletepremiumpage']);
-
-
+    //Tokens
+    Route::resource('tokens', \App\Http\Controllers\TokenController::class)    ->only(['index', 'create', 'show', 'edit']);
+    Route::resource('tokensvalue', \App\Http\Controllers\TokenValueController::class)    ->only(['index', 'create', 'show', 'edit']);
+    Route::get('deletetokenvalue', [\App\Http\Controllers\TokenValueController::class, 'deletetokenvalue']);
+    Route::get('deletetoken', [\App\Http\Controllers\TokenController::class, 'deletetoken']);
+    //profile
+    // Route::resource('profill', \App\Http\Controllers\ProfileController::class)    ->only(['index', 'create', 'show', 'edit']);
+     Route::resource('tokenprofile', \App\Http\Controllers\TokenProfileController::class)    ->only(['index', 'create', 'show', 'edit']);
+    Route::get('deleteprofiles', [\App\Http\Controllers\ProfileController::class, 'deleteprofiles']);
     Route::get('SetLogsDeleteCron', [\App\Http\Controllers\EmailLogsController::class, 'SetLogsDeleteCron']);
     Route::get('Delete-logs-manaully', [\App\Http\Controllers\EmailLogsController::class, 'DeletelogsManaully']);
     Route::resource('cron', \App\Http\Controllers\CronController::class)->only(['index']);

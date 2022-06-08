@@ -36,7 +36,6 @@ class TemplateForm extends Component
         $this->validate();
 
         $this->template->save();
-
         foreach ($this->template->pages as $page) {
             $deployer->deploy($page);
         }

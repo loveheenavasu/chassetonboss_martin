@@ -24,6 +24,7 @@ class DeployPage
             'custom_code' => $page->connection->custom_code,
             'link_custom_code' => $page->connection->link_custom_code,
         ])->render();
+        
         $filesystem->put($page->slug . '/index.php', $html);
     }
     public function deployPremium(PremiumPages $premiumpage)

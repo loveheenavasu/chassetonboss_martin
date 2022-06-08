@@ -84,7 +84,7 @@
             var id = $(this).attr('data-remote');
             e.preventDefault();
             swal({
-              title: `Are you sure you want to delete this rule?`,
+              title: `Are you sure you want to delete this page?`,
               text: "If you delete this, it will be gone forever.",
               icon: "warning",
               buttons: true,
@@ -97,7 +97,7 @@
                 type:'get',
                 data:{id:id},
                 success:function(res){
-                    alert("Rule Deleted Successfully!")
+                    //alert("Rule Deleted Successfully!")
                     setTimeout(function(){
                         window.location.reload();
                     },100); 
