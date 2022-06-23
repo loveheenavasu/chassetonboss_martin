@@ -1,3 +1,4 @@
+
 <div>
     <div class="md:grid md:gap-6">
         <x-jet-section-title>
@@ -143,6 +144,13 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div>
+                            @if (session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                        </div>
                         @if($this->rules->hasPages())
                             <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
                                 {{ $this->rules->links() }}
@@ -185,6 +193,21 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@livewireScripts
+  
+<script>
+window.addEventListener('alert', event => { 
+             toastr[event.detail.type](event.detail.message, 
+             event.detail.title ?? ''), toastr.options = {
+                    "closeButton": true,
+                    "progressBar": true,
+                }
+            });
+</script>
+
+
 <script type="text/javascript">
     $(document).ready(function(){
         $('#rule_check_all').on('click',function () {

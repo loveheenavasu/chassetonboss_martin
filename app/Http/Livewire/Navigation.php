@@ -190,14 +190,14 @@ class Navigation extends NavigationDropdown
                         'active' => request()->routeIs('connections.*')
                     ],
                     [
-                        'href' => route('templates.index'),
-                        'label' => __('Templates'),
-                        'active' => request()->routeIs('templates.*')
+                        'href' => route('landingtemplates.index'),
+                        'label' => __('Landing_Templates'),
+                        'active' => request()->routeIs('landingtemplates.*')
                     ],
                     [
-                        'href' => route('pages.index'),
-                        'label' => __('Pages'),
-                        'active' => request()->routeIs('pages.*')
+                        'href' => route('landingpages.index'),
+                        'label' => __('Landing_Pages'),
+                        'active' => request()->routeIs('landingpages.*')
                     ],
                     [
                         'href' => route('tokens.index'),
@@ -210,7 +210,7 @@ class Navigation extends NavigationDropdown
                         'active' => request()->routeIs('tokenprofile.*')
                     ]
                 ];
-                 break;
+                break;
             default:
                 $links = [];
                 break;
@@ -243,11 +243,11 @@ class Navigation extends NavigationDropdown
             [
                 'key' => 'leadvalidator',
                 'label' => 'Lead Validator'
-            ]
-            // [
-            //     'key' => 'landingpage',
-            //     'label' => 'Landing Page 3.0'
-            // ],
+            ],
+            [
+                'key' => 'landingpage',
+                'label' => 'Landing Page 3.0'
+            ],
         ];
     }
     public function selectTool($tool): void

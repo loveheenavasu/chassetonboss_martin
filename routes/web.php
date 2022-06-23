@@ -104,7 +104,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
     //profile
     // Route::resource('profill', \App\Http\Controllers\ProfileController::class)    ->only(['index', 'create', 'show', 'edit']);
      Route::resource('tokenprofile', \App\Http\Controllers\TokenProfileController::class)    ->only(['index', 'create', 'show', 'edit']);
-    Route::get('deleteprofiles', [\App\Http\Controllers\ProfileController::class, 'deleteprofiles']);
+    Route::get('deleteprofiles', [\App\Http\Controllers\TokenProfileController::class, 'deleteprofiles']);
     Route::get('SetLogsDeleteCron', [\App\Http\Controllers\EmailLogsController::class, 'SetLogsDeleteCron']);
     Route::get('Delete-logs-manaully', [\App\Http\Controllers\EmailLogsController::class, 'DeletelogsManaully']);
     Route::resource('cron', \App\Http\Controllers\CronController::class)->only(['index']);
@@ -120,4 +120,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
 
     //user login details
     Route::resource('/logindetails', \App\Http\Controllers\UserLoginDetailController::class)->only(['index']);
+
+    //landing Pages
+    Route::resource('landingpages', \App\Http\Controllers\LandingPageController::class)->only(['index', 'create', 'edit']);
+    Route::get('deletelandingpage', [\App\Http\Controllers\LandingPageController::class, 'deletelandingpage']);
+
+    //landing templates
+    Route::resource('landingtemplates', \App\Http\Controllers\LandingTemplateController::class)->only(['index', 'create', 'show', 'edit','store']);
+    Route::post('store', [\App\Http\Controllers\LandingTemplateController::class, 'store'])->name('landingtemplates.store');
+    Route::post('update', [\App\Http\Controllers\LandingTemplateController::class, 'update'])->name('landingtemplates.update');
+
+    //add query params in syndication
+    Route::get('getqueryparams', [\App\Http\Controllers\SyndicationController::class, 'getqueryparams']);
 });

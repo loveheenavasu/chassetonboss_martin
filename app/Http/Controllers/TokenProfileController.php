@@ -36,7 +36,7 @@ class TokenProfileController extends Controller
                     return $row->id;
                 })
                 ->addColumn('name', function ($row) {
-                    return $row->name;
+                    return $row->profile_name;
                 })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at;
@@ -118,7 +118,7 @@ class TokenProfileController extends Controller
      */
     public function deleteprofiles(Profiles $tokenprofiles){
         $pageId= $_GET['id'];
-         $result = Profiles::where('id', $pageId)->delete();
+        $result = Profiles::where('id', $pageId)->delete();
         if($result){
             return true;
         }else{

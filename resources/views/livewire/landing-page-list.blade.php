@@ -10,16 +10,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <x-action-section>
         <x-slot name="title">
-            {{ __('Manage Profiles') }}
+            {{ __('Manage Pages') }}
         </x-slot>
 
         <x-slot name="content">
             <div class="container">
-                <table class="table table-bordered" id="profile_value_table">
+                <table class="table table-bordered" id="landingpage_table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>PROFILES</th>
+                            <th>LINKS</th>
+                            <th>PROFILE NAME</th>
                             <th>CREATED AT</th>
                             <th>ACTION</th>
                         </tr>
@@ -54,15 +55,15 @@
     .dataTable td:last-child  {
         white-space: nowrap;
     }
-    #profile_value_table {
+    #landingpage_table {
         width: 100% !important;
     }
     
 </style>
+
 <script type="text/javascript">
     $(document).ready(function(){
-
-        var table = $('#profile_value_table').DataTable({
+        var table = $('#landingpage_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
@@ -72,19 +73,20 @@
             ordering: true,
             iDisplayLength: 25,
             lengthMenu: [10, 25, 50,100,250,500,'All'],
-            ajax: "/tokenprofile",  
+            ajax: "/landingpages",
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'name', name: 'name'},
+                {data: 'full_url', name: 'full_url'},
+                {data: 'profile_id', name: 'profile_id'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-        $('#profile_value_table').on('click', '.btn-delete[data-remote]', function (e){ 
+        $('#landingpage_table').on('click', '.btn-delete[data-remote]', function (e){ 
             var id = $(this).attr('data-remote');
             e.preventDefault();
             swal({
-              title: `Are you sure you want to delete this profile?`,
+              title: `Are you sure you want to delete this rule?`,
               text: "If you delete this, it will be gone forever.",
               icon: "warning",
               buttons: true,
@@ -93,12 +95,10 @@
           .then((willDelete) => {
             if (willDelete) {
               $.ajax({
-                url:'/deleteprofiles',
+                url:'/deletelandingpage',
                 type:'get',
                 data:{id:id},
                 success:function(res){
-
-                   // alert("Token Deleted Successfully!")
                     setTimeout(function(){
                         window.location.reload();
                     },100); 
@@ -108,5 +108,36 @@
           });
         });
     });
-    
+    function copyToClipboard(element) {
+        var copyText = document.getElementById("copy_to_clipboard_"+element);
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+          /* Copy the text inside the text field */
+          document.execCommand("copy");
+
+          /* Alert the copied text */
+          swal({
+              title: `Page link copied to clipboard`,
+              icon: "success",
+              showConfirmButton: false,
+          });
+    }
+
+    function copyParmasToClipboard(element) {
+        var copyText = document.getElementById("copy_url_param"+element);
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+          /* Copy the text inside the text field */
+          document.execCommand("copy");
+
+          /* Alert the copied text */
+          swal({
+              title: `Params copied to clipboard`,
+              icon: "success",
+              showConfirmButton: false,
+          });
+    }
 </script>

@@ -103,7 +103,7 @@ class RuleList extends Component
         foreach ($allRules as $key => $allRule) {
           $checkUrl = Connection::where('id',$allRule->connection_id)->first()->base_url;
           if($this->isSiteAvailible($checkUrl)){
-            if($allRule->status == 'running'){
+            
               $webhook_id_selected = $allRule['webhook_id_selected'];
               if($webhook_id_selected){
                 $webhook_id_selected_url = Connection::where('id',$webhook_id_selected)->first()->base_url;
@@ -233,7 +233,6 @@ class RuleList extends Component
                         }
                       }
                     }
-                    
                     foreach ($valid_emails as $value) {
                       $curl = curl_init();
                       curl_setopt_array($curl, array(
@@ -256,8 +255,11 @@ class RuleList extends Component
                       $results = json_decode($response);
                       if(isset($results->errors)){
                         $all_error = 'Email:'.$value['email'].' '.'Rule Number:'.$value['rule_number'].' Rule Name:'.$value['rule_name']. ' Message:'.$results->errors[0]->message;
-                        Storage::disk('public')->append('errorlogs.txt', $all_error,null);
-                        die;
+
+                        //Storage::disk('public')->append('errorlogs.txt', $all_error,null);
+                        $this->dispatchBrowserEvent('alert', 
+                            ['type' => 'error',  'message' => $results->errors[0]->message]);
+                        return '';
                       }
 
                       if($results->contact !=''){
@@ -284,6 +286,8 @@ class RuleList extends Component
                             $valid_array = array('valid_emails'=>$valid_count);
                             Listing::where('id',$all_list->listing_id)->update($valid_array);
                           }
+                          $this->dispatchBrowserEvent('alert', 
+                                ['type' => 'info',  'message' => 'Mautic Contact succssfully!']);
 
                        }else{
                         $emailLogs = array('email' => $value['email'],'status' => 'error','type' => $type,'rule_number' => $value['rule_number'],'rule_name' => $value['rule_name'],'timezone' => $value['timezone']);
@@ -329,12 +333,13 @@ class RuleList extends Component
                         {
                           $non_sync_emails = array('email' => $value['email'],'status' =>                 $result_final['errors'][0]['message']);
                           MauticLogs::create($non_sync_emails);
-                          $testmail= Mail::raw('We can not assign stage to '.$value['email'].' having error "'.$result_final['errors'][0]['message'].'" on syncing email ', function ($message) 
-                                    {
-                                      $message->to('mebongue@hotmail.com')
-                                        ->subject('Mautic');
-                                    });
-                          
+                          // $testmail= Mail::raw('We can not assign stage to '.$value['email'].' having error "'.$result_final['errors'][0]['message'].'" on syncing email ', function ($message) 
+                          //           {
+                          //             $message->to('mebongue@hotmail.com')
+                          //               ->subject('Mautic');
+                          //           });
+                          $this->dispatchBrowserEvent('alert', 
+                                ['type' => 'error',  'message' => 'Error in assigning stages.']);
                           }
                         ////////////June 9 code for send data to webhook if mautc selected//////
                     $checkemail = 0;
@@ -699,7 +704,7 @@ class RuleList extends Component
                   }
                 }
               }
-            }
+            
           }else{
             Mail::send('emails.email_template', ['site_url' => $checkUrl], function ($message){
                 $message->to('mebongue@hotmail.com')
