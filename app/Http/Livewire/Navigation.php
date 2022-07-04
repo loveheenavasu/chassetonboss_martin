@@ -191,12 +191,12 @@ class Navigation extends NavigationDropdown
                     ],
                     [
                         'href' => route('landingtemplates.index'),
-                        'label' => __('Landing_Templates'),
+                        'label' => __('Landing Templates'),
                         'active' => request()->routeIs('landingtemplates.*')
                     ],
                     [
                         'href' => route('landingpages.index'),
-                        'label' => __('Landing_Pages'),
+                        'label' => __('Landing Pages'),
                         'active' => request()->routeIs('landingpages.*')
                     ],
                     [

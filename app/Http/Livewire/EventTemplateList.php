@@ -15,7 +15,7 @@ class EventTemplateList extends Component
 
     public function getContentsProperty()
     {
-        return EventTemplate::latest()->paginate(10);
+        return EventTemplate::latest()->paginate(50);
     }
 
     public function confirmContentDeletion(EventTemplate $eventtemplate): void

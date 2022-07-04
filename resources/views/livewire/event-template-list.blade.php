@@ -85,7 +85,13 @@
                       </div>
                     </div>
                 </div>
-                    @endforeach
+                @endforeach
+
+                @if($this->contents->hasPages())
+                        <div contents="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+                            {{ $this->contents->fragment('')->links() }}
+                        </div>
+                @endif
                 @else
                     <div>{{ __('No contents yet.') }}</div>
                 @endif

@@ -33,24 +33,7 @@ class LandingPage extends Model
 
     public function getContentAttribute(): string
     {
-       
-        // $all_tokens = TokenValue::get();
-        // $json_data = $all_tokens[0]['name'];
-        //$json_pages = json_decode($json_data,true);
-        
-        //$retuna = Str::of($this->landing_template->content)
-            // ->replace('*NAME*', $this->name)
-            // ->replace('*PRODUCT*', $this->product);
-        // foreach($json_pages as $json_page_k => $json_page_v){
-        //    $keys = array_keys($json_page_v);
-        //    $values = array_values($json_page_v);
-        //    $retuna = $retuna->replace('*'.str_replace('_',' ', $keys[0] ).'*', $values[0]);
-        // }
-            return $this->landing_template->html;
-    }
-    public function getStyleAttribute(): string
-    {
-        return $this->landing_template->css;
+        return $this->landing_template->content;
     }
 
     public function connection(): BelongsTo
@@ -63,7 +46,4 @@ class LandingPage extends Model
         return $this->belongsTo(LandingTemplate::class);
     }
 
-    public function alldata($form){
-        return $form;
-    }
 }
