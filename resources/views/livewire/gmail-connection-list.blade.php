@@ -45,9 +45,11 @@
                             Save Filter
                         </button>
                     </div>
-                    <button type="button" name="assigngroup" id="assigngroup" class="btn btn-primary" data-toggle="modal" data-target="#groupsModal">
+                    <button type="button d-none" name="assigngroup" id="assigngroup" class="btn btn-primary" data-toggle="modal" data-target="#groupsModal">
                         Groups
                     </button>
+                    <button type="button" class="ml-2 btn btn-danger d-none" id="deleteSelected">Delete</button>
+
                 </div>
                 <div class="items-center">
                     <div class="container-fluid">
@@ -339,17 +341,40 @@
                     selectvalue.push(id);
 
                 });
+                $("#deleteSelected").removeClass('d-none');
             }
             else{
                 selectvalue=[];
+                $("#deleteSelected").addClass('d-none');
             }
         $("#allselected").val(selectvalue);
+    });
+
+
+    $('#deleteSelected').on('click',function(){
+        var getselectedvalue=[];
+        var getselectedvalue = $('#allselected').val();
+        if(getselectedvalue==""){
+            alert("Please select a email");
+        }
+        else{
+            var getGroupId = $('#selectedgroup').val();
+            $.ajax({
+                url: "/deleteSelectedGmailconnection",
+                type:"get",
+                data: {getselectedvalue:getselectedvalue},
+                success: function(result){
+                    window.location.reload();
+                }
+            });
+        }
     });
 
     $(' #page_table tbody').on('change', 'input[type="checkbox"]', function(){
         if (!this.checked) {
             $('#checkdata').prop("checked", false);
         } else {
+            $("#deleteSelected").removeClass('d-none');
             if ($('input[type="checkbox"]:checked').length == $('#page_table tbody tr').length) {
                 $('#checkdata').prop("checked", true);
             }

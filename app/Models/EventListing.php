@@ -54,5 +54,17 @@ class EventListing extends Model
         return $this->allemailsnotinpool->pluck('email')->implode(PHP_EOL);
     }
 
+    public function countallemails(){
+        $count = EventListingEmail::select("*")->where('event_listing_id',$this->id)->count();
+        return $count;
+
+    }
+
+    public function countallemailsinpoll(){
+        $count = EventListingEmail::select("*")->where('event_listing_id',$this->id)->where('in_pool',1)->count();
+        return $count;
+
+    }
+
 }
 

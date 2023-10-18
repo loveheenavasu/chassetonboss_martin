@@ -65,7 +65,7 @@
                                         @endif
                                     </td>
                                     <td class="px-4 py-2 whitespace-nowrap text-sm">
-                                            {{ $event->emails_count }}
+                                        {{ 200 }}
                                     </td>
                                     <td class="px-4 py-2 whitespace-nowrap text-sm">
                                             <div>{{ \Illuminate\Support\Str::humanize($event->schedule) }}</div>
@@ -112,46 +112,47 @@
                                             </div>
                                     </td>
                                     <td class="px-4 py-2 whitespace-nowrap text-sm">
-                                            <div>{{ \Illuminate\Support\Str::humanize($event->schedule_time) }}</div>
-                                            <div>
-                                                @if($event->schedule_time === 'exact_time')
-                                                    {{ \Illuminate\Support\Str::padLeft($rule->schedule_hour, 2, 0) }}:00
-                                                @elseif(in_array($event->schedule_time, ['between', 'spread','event_time']))
-                                                    {{ \Illuminate\Support\Str::padLeft($event->schedule_hour_from, 2, 0) }}:00-{{ \Illuminate\Support\Str::padLeft($event->schedule_hour_to, 2, 0) }}:00
-                                                @endif
-                                            </div>
+                                        <div>{{ \Illuminate\Support\Str::humanize($event->schedule_time) }}</div>
+                                        <div>
+                                            @if($event->schedule_time === 'exact_time')
+                                                {{ \Illuminate\Support\Str::padLeft($rule->schedule_hour, 2, 0) }}:00
+                                            @elseif(in_array($event->schedule_time, ['between', 'spread','event_time']))
+                                                {{ \Illuminate\Support\Str::padLeft($event->schedule_hour_from, 2, 0) }}:00-{{ \Illuminate\Support\Str::padLeft($event->schedule_hour_to, 2, 0) }}:00
+                                            @endif
+                                        </div>
                                     </td>
                                     <td class="px-4 py-2 whitespace-nowrap text-sm">
-                                            {{ $event->actions_left }}
+                                        {{ 100 }}
                                     </td>
                                     <td class="px-4 py-2 whitespace-nowrap text-sm">
-                                           {{ $event->estimated_date->format('d.m.Y') }} 
+                                        {{ date('d.m.Y') }}
                                     </td>
+
                                     <td class="px-4 py-2 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                @if($event->status === \App\Models\Event::STATUS_STOPPED)
-                                                    <button class="cursor-pointer ml-6 text-sm text-blue-400 focus:outline-none" wire:click="startEvent({{ $event->id }})">
-                                                        Start
-                                                    </button>
-                                                @else
-                                                    <button class="cursor-pointer ml-6 text-sm text-yellow-400 focus:outline-none" wire:click="stopEvent({{ $event->id }})">
-                                                        Stop
-                                                    </button>
-                                                @endif
-
-                                                <button class="cursor-pointer ml-6 text-sm text-gray-400 focus:outline-none" wire:click="cloneEvent({{ $event->id }})">
-                                                    Clone
+                                        <div class="flex items-center">
+                                            @if($event->status === \App\Models\Event::STATUS_STOPPED)
+                                                <button class="cursor-pointer ml-6 text-sm text-blue-400 focus:outline-none" wire:click="startEvent({{ $event->id }})">
+                                                    Start
                                                 </button>
-
-                                                <a href="{{route('eventcalender.edit', $event->id) }}" class="cursor-pointer ml-6 text-sm text-gray-400 focus:outline-none">
-                                                    {{ __('Details') }}
-                                                </a>
-
-                                                <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none" wire:click="confirmEventDeletion({{ $event->id }})">
-                                                    {{ __('Delete') }}
+                                            @else
+                                                <button class="cursor-pointer ml-6 text-sm text-yellow-400 focus:outline-none" wire:click="stopEvent({{ $event->id }})">
+                                                    Stop
                                                 </button>
-                                            </div>
-                                        </td>
+                                            @endif
+
+                                            <button class="cursor-pointer ml-6 text-sm text-gray-400 focus:outline-none" wire:click="cloneEvent({{ $event->id }})">
+                                                Clone
+                                            </button>
+
+                                            <a href="{{route('eventcalender.edit', $event->id) }}" class="cursor-pointer ml-6 text-sm text-gray-400 focus:outline-none">
+                                                {{ __('Details') }}
+                                            </a>
+
+                                            <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none" wire:click="confirmEventDeletion({{ $event->id }})">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </div>
+                                    </td>
 
                                 </tr>
                                 @endforeach

@@ -24,6 +24,7 @@ class EventlistingList extends Component
 
     public function getEventlistingsProperty()
     {
+
         return EventListing::query()->paginate(100);
     }
 
@@ -49,6 +50,7 @@ class EventlistingList extends Component
             $this->confirmingReset = false;
         }
         if(!empty($emailIds)){
+            DB::table('eventemails')->whereIn('id',$emailIds)->update(['sync_status'=>'no']);
             $event_email=DB::table('eventemails')->whereIn('id',$emailIds)->get();
             if(!$event_email->isEmpty()){
               foreach($event_email as $e_mail){

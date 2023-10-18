@@ -86,6 +86,7 @@ class MauticCronEmail extends Command
       $group = $this->argument('rule_id');
       $allRules = Rule::where('id',$group)->get();
       $valid_count = '';
+      $neverBounce_key = env('NEVERBOUNCE_API_KEY');
       if(!empty($allRules)){
         
         foreach ($allRules as $key => $allRule) {
@@ -154,7 +155,7 @@ class MauticCronEmail extends Command
                         $checkemail++;
                         $curl = curl_init();
                         curl_setopt_array($curl, array(
-                          CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                          CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                           CURLOPT_RETURNTRANSFER => true,
                           CURLOPT_ENCODING => '',
                           CURLOPT_MAXREDIRS => 10,
@@ -168,7 +169,7 @@ class MauticCronEmail extends Command
                         
                         curl_close($curl);
                         $validation_check = json_decode($response);
-                        if($validation_check->result == 'invalid'){
+                        if(isset($validation_check) && $validation_check->result == 'invalid'){
                           $invalid_emails = array('email'=>$key,'status'=>$validation_check->result,'type' => $type,'rule_number' => $value['rule_number'],'rule_name' => $value['rule_name'],'timezone' => $value['timezone']);
                           $checkMail = InvalidEmail::where([
                                                           ['email', '=', $key],
@@ -245,6 +246,14 @@ class MauticCronEmail extends Command
                       if(isset($results->errors)){
                         $all_error = 'Email:'.$value['email'].' '.'Rule Number:'.$value['rule_number'].' Rule Name:'.$value['rule_name']. ' Message:'.$results->errors[0]->message;
                         Storage::disk('public')->append('errorlogs.txt', $all_error,null);
+
+                        $invalid_emails = array('email' => $value['email'],'status' => 'error','type' => $type,'rule_number' => $value['rule_number'],'rule_name' => $value['rule_name'],'timezone' => $value['timezone']);
+                        $InvalidEmail = InvalidEmail::create($invalid_emails);
+
+                        $sync_status = array('sync_status'=>'yes');
+                        Email::where('email',$value['email'])
+                          ->update($sync_status);
+
                         die;
                       }
 
@@ -472,7 +481,7 @@ class MauticCronEmail extends Command
                           $curl = curl_init();
 
                           curl_setopt_array($curl, array(
-                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key .'&email='.$key.' ',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => '',
                             CURLOPT_MAXREDIRS => 10,
@@ -487,7 +496,7 @@ class MauticCronEmail extends Command
                           curl_close($curl);
                           $validation_check = json_decode($response);
 
-                          if($validation_check->result == 'invalid'){
+                          if(isset($validation_check) && $validation_check->result == 'invalid'){
                              $invalid_emails = array('email'=>$key,'status'=>$validation_check->result,'type' => $type,'rule_number' => $value['rule_number'],'rule_name' => $value['rule_name'],'timezone' => $value['timezone']);
                               $checkMail = InvalidEmail::where([
                                                                 ['email', '=', $key],

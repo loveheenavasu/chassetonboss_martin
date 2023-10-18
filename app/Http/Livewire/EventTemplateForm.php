@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\EventTemplate;
 use Livewire\Component;
+use App\Models\EventPlaceholder;
 
 use Illuminate\Validation\Rule as ValidationRule;
 
@@ -34,6 +35,10 @@ class EventTemplateForm extends Component
         $this->eventtemplate = $eventtemplate;
     }
 
+    public function getEventPlaceholdersProperty()
+    {
+        return EventPlaceholder::get();
+    }
 
     public function submit()
     { 

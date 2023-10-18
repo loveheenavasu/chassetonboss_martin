@@ -170,7 +170,7 @@ class RuleForm extends Component
         ));
 
         $response = curl_exec($curl);
-         curl_close($curl);
+        curl_close($curl);
         $allstages = json_decode($response);
         return $allstages->stages;
         

@@ -178,6 +178,11 @@ class Navigation extends NavigationDropdown
                         'label' => __('Email Logs'),
                         'active' => request()->routeIs('eventemaillogs.*')
                     ],
+                    [
+                        'href' => route('eventplaceholders.index'),
+                        'label' => __('Event Placeholders'),
+                        'active' => request()->routeIs('eventplaceholders.*')
+                    ],
                     
 
                 ];

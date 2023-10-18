@@ -6,6 +6,8 @@ use App\Concerns\EstablishesConnections;
 use App\Models\Page;
 use App\Models\PremiumPages;
 use App\Models\LandingPage;
+use App\Models\LandingPageConnection;
+use App\Models\LandingTemplate;
 use League\Flysystem\Filesystem;
 
 class DeployPage
@@ -44,18 +46,36 @@ class DeployPage
 
     public function deploylandingpage(LandingPage $landingpage)
     {
-        $filesystem2 = $this->createFilesystem2($landingpage);
-        $filesystem2->createDir($landingpage->slug);
-        $html = view('landingpage.show', [
-            'content' => $landingpage->content,
-            'style'=>$landingpage->style,
-            'link' => $landingpage->affiliate_link,
-            'button_text' => $landingpage->landing_template->button_text,
-            'custom_code' => $landingpage->connection->custom_code,
-            'link_custom_code' => $landingpage->connection->link_custom_code,
-        ])->render();
+        
+        $landingpage->landingpageConnections->each(function (LandingPageConnection $sc) {
+            try {
+                $slug = $sc->landing_page->slug;
+                $filesystem3 = new Filesystem($this->createAdapter($sc->connection));
+                $filesystem3->createDir($slug);
+                $html = view('landingpage.show', [
+                    'content' => $sc->landing_page->landing_template->content
+                ])->render();
+                
+                $filesystem3->put($slug . '/index.html', $html);
 
-        $filesystem2->put($landingpage->slug . '/index.php', $html);
+                $sc->forceFill(['was_deployed' => true])->save();
+            } catch (\Throwable $e) {
+                $sc->forceFill(['was_deployed' => false])->save();
+                throw $e;
+            }
+        });
+        // $filesystem2 = $this->createFilesystem2($landingpage);
+        // $filesystem2->createDir($landingpage->slug);
+        // $html = view('landingpage.show', [
+        //     'content' => $landingpage->content,
+        //     'style'=>$landingpage->style,
+        //     'link' => $landingpage->affiliate_link,
+        //     'button_text' => $landingpage->landing_template->button_text,
+        //     'custom_code' => $landingpage->connection->custom_code,
+        //     'link_custom_code' => $landingpage->connection->link_custom_code,
+        // ])->render();
+
+        // $filesystem2->put($landingpage->slug . '/index.php', $html);
 
     }
 

@@ -21,7 +21,6 @@ use File;
 use Google_Event;
 use Session;
 
-
 class GmailConnectionController extends Controller
 {
     public Groups $group;
@@ -145,6 +144,16 @@ class GmailConnectionController extends Controller
     public function import()
     {
         return view('gmailconnection.connection-import');
+    }
+
+    public function deleteSelectedGmailconnection(){
+        $getselectedvalue=$_GET['getselectedvalue'];
+        $result = GmailConnection::whereIn('id', explode(',',$getselectedvalue))->delete();
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
     }
     public function getcheckedvalue(){
         $getselectedvalue=$_GET['getselectedvalue'];
@@ -293,5 +302,5 @@ class GmailConnectionController extends Controller
                 echo '<option value="'.$allFilter->id.'" data-group="'.$allFilter->group_name.'" data-token-check="'.$allFilter->token_check.'">'.$allFilter->name.'</option>';
             }
         }
-    }   
+    }  
 }

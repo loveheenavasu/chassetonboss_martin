@@ -213,6 +213,7 @@ class LeadValidatorImporter extends Component
 
     public function import(): void
     {
+        $neverBounce_key = env('NEVERBOUNCE_API_KEY');
         $this->columns = array_map('strtolower', $this->columns);
         $webmail=[];
         $corpmail=[];
@@ -1206,7 +1207,7 @@ class LeadValidatorImporter extends Component
                     if($key == $this->allCorpEmail[$i]){
                         $curl = curl_init();
                             curl_setopt_array($curl, array(
-                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => '',
                                 CURLOPT_MAXREDIRS => 10,
@@ -1328,7 +1329,7 @@ class LeadValidatorImporter extends Component
                             if($key == $this->allWebEmail[$i]){
                                 $curl = curl_init();
                                 curl_setopt_array($curl, array(
-                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => '',
                                 CURLOPT_MAXREDIRS => 10,
@@ -1446,7 +1447,7 @@ class LeadValidatorImporter extends Component
                             if($key == $this->allWebEmail[$i]){
                                 $curl = curl_init();
                                 curl_setopt_array($curl, array(
-                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => '',
                                 CURLOPT_MAXREDIRS => 10,
@@ -1849,7 +1850,7 @@ class LeadValidatorImporter extends Component
                     if($key == $this->allCorpEmail[$i]){
                         $curl = curl_init();
                             curl_setopt_array($curl, array(
-                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                                CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => '',
                                 CURLOPT_MAXREDIRS => 10,
@@ -2078,7 +2079,7 @@ class LeadValidatorImporter extends Component
                             }
                             $curl = curl_init();
                             curl_setopt_array($curl, array(
-                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => '',
                             CURLOPT_MAXREDIRS => 10,
@@ -2305,7 +2306,7 @@ class LeadValidatorImporter extends Component
                             }
                             $curl = curl_init();
                             curl_setopt_array($curl, array(
-                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key .'&email='.$key.' ',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => '',
                             CURLOPT_MAXREDIRS => 10,
@@ -2522,7 +2523,7 @@ class LeadValidatorImporter extends Component
                             }
                             $curl = curl_init();
                             curl_setopt_array($curl, array(
-                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key .'&email='.$key.' ',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => '',
                             CURLOPT_MAXREDIRS => 10,
@@ -2585,7 +2586,7 @@ class LeadValidatorImporter extends Component
                     }
                     $curl = curl_init();
                         curl_setopt_array($curl, array(
-                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key .'&email='.$key.' ',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => '',
                             CURLOPT_MAXREDIRS => 10,
@@ -2890,7 +2891,7 @@ class LeadValidatorImporter extends Component
                 }
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                    CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key .'&email='.$key.' ',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,

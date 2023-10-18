@@ -99,6 +99,7 @@ class RuleList extends Component
       $group = $this->rule->id;
       $allRules = Rule::where('id',$group)->get();
       $valid_count = '';
+      $neverBounce_key = env('NEVERBOUNCE_API_KEY');
       if(!empty($allRules)){
         foreach ($allRules as $key => $allRule) {
           $checkUrl = Connection::where('id',$allRule->connection_id)->first()->base_url;
@@ -128,6 +129,7 @@ class RuleList extends Component
                                       ->leftjoin('rules as r','r.id','=','listing_rule.rule_id')
                                       ->where('rule_id',$rule_id)
                                       ->get();
+                
                 if(!empty($all_lists)){
                   foreach ($all_lists as $key => $all_list) {                  
                     $allEmailsInfos = ListingEmail::where('listing_id',$all_list->listing_id)
@@ -135,6 +137,7 @@ class RuleList extends Component
                       ->leftjoin('email_infos as ef','ef.email_id','=','e.id')
                       ->where('e.sync_status','no')
                       ->select('e.id as email_id','e.email as email','ef.value','ef.type as type','listing_id as listing_id')->get()->toArray();
+
                     foreach ($allEmailsInfos as $allEmailsInfo) {
                       $final_array[$allEmailsInfo['email']][$allEmailsInfo['type']] = $allEmailsInfo['value'];
                       $final_array[$allEmailsInfo['email']]['rule_number'] = $all_list->rule_id;
@@ -143,7 +146,7 @@ class RuleList extends Component
                       $final_array[$allEmailsInfo['email']]['listing_id'] = $allEmailsInfo['listing_id'];
                       $final_array[$allEmailsInfo['email']]['email_id'] = $allEmailsInfo['email_id'];
                     }
-                    
+                       
                     $checkemail = 0;
                     $calEmail = 1;
                     $allEmailLogsArray = [];
@@ -161,12 +164,13 @@ class RuleList extends Component
                           RuleAction::create($actionStatus);
                         }
                     }
+
                     foreach ($final_array as $key => $value) {
                       if($checkemail  < $calEmail && $allSyncMail <= $emails_count){
                         $checkemail++;
                         $curl = curl_init();
                         curl_setopt_array($curl, array(
-                          CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                          CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                           CURLOPT_RETURNTRANSFER => true,
                           CURLOPT_ENCODING => '',
                           CURLOPT_MAXREDIRS => 10,
@@ -489,7 +493,7 @@ class RuleList extends Component
                           $curl = curl_init();
 
                           curl_setopt_array($curl, array(
-                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key=private_a858390e9dc3175c6e809053edc7349f&email='.$key.' ',
+                            CURLOPT_URL => 'https://api.neverbounce.com/v4/single/check?key='.$neverBounce_key.'&email='.$key.' ',
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => '',
                             CURLOPT_MAXREDIRS => 10,

@@ -16,6 +16,8 @@ class LandingPageForm extends Component
 {
     public LandingPage $landingpage;
     public array $json_data = [];
+    public array $connection_ids = [];
+    public $selectAll =false;
 
     public function getConnectionsProperty()
     {
@@ -38,27 +40,39 @@ class LandingPageForm extends Component
 
     public function mount(LandingPage $landingpage): void
     {
-         $json_data_array = [];
-       
+        $json_data_array = [];
         $this->landingpage = $landingpage;
+        $this->landingpage->tools = Tools::current();
+        $this->landingpage->load('landingpageConnections');
 
-         $this->landingpage->tools = Tools::current();
+        $this->connection_ids = $this->landingpage
+            ->landingpageConnections
+            ->map(fn ($s) => (string) $s->connection_id)
+            ->toArray();
+    }
 
+    public function wasConnectionDeployed(Connection $connection): bool
+    {
+        $sc = $this->landingpage
+            ->landingpageConnections()
+            ->firstWhere('connection_id', '=', $connection->id);
 
+        if (!$sc) {
+            return false;
+        }
+
+        return $sc->was_deployed;
     }
 
     public function rules(): array
     {
         return [
             'landingpage.tools' => ['required', Rule::in(Tools::all())],
-            'landingpage.connection_id' => ['required', 'exists:connections,id'],
+            'connection_ids' => ['array', 'min:1'],
+            'connection_ids.*' => ['exists:connections,id'],
             'landingpage.profile_id' => ['nullable', 'exists:token_profile,id'],
             'landingpage.landing_template_id' => ['required', 'exists:landing_templates,id'],
             'landingpage.slug' => ['required', 'string'],
-            'landingpage.product' => ['nullable', 'string'],
-            'landingpage.affiliate_link' => ['nullable', 'string'],
-            'landingpage.name' => ['nullable', 'string'],
-            'json_data.*' => ['nullable', 'string'],
         ];
     }
 
@@ -67,62 +81,44 @@ class LandingPageForm extends Component
         if($this->landingpage->id == ''){
             $this->validate();
         }
-
-        // $json_array = [];
-        // $json_data = $this->json_data;
-        // foreach($json_data as $k =>$v){
-        //     $json_array[] = array($k => $v);
-        // }
-        // $this->landingpages->json_data = json_encode($json_array);
-        //echo "<pre>"; print_r($this->landingpages);die;
         $this->landingpage->save();
-        // $url_param = $this->landingpage->full_url;
-        // $token = Tokens::get()->toArray();
-        // foreach($token as $token_val){
-        //     $url_params[] = $token_val['name'].'='; 
-        // }
+        $this->landingpage->landingpageConnections()->delete();
+        try {
 
-        // if(Tools::current()=="landingpage"){
-        //     $final_url = $url_param.'?'.implode('&',$url_params);
-        // }else{
-        //     $final_url = $this->landingpage->full_url;
-        // }
-        $result=[];
-        $profile = Profiles::where('id',$this->landingpage->profile_id)->first();
+            collect($this->connection_ids)->each(function ($connectionId) {
+                $this->landingpage->landingpageConnections()->create([
+                    'connection_id' => $connectionId,
+                    'was_deployed' => false
+                ]);
+            });
 
-        if($profile->token_data){
-            $url_parm = json_decode($profile->token_data,true);
-            $url_parm = $url_parm['token_data'];
-            foreach($url_parm as $key => $val){
-                $result[] .=  $key . '=' . $val.'&';
-            }
-            $result = implode($result);
-            $final_parms = substr($result,0,-1);
-            //echo "<pre>"; print_r(implode($result));die;
-            $finall =  $this->landingpage->full_url.'/?'.$final_parms;
-        
-        }else{
-            $finall =  $this->landingpage->full_url.'/';
-        }   
-                        
+            $deployer->deploylandingpage($this->landingpage);
 
+            // session()->flash('copyToClipboard', [
+            //     'text' => 'Content urls copied to clipboard',
+            //     'value' => $this->landingpage->copiedValue()
+            // ]);
 
-
-
-
-
-
-        $deployer->deploylandingpage($this->landingpage);
-        session()->flash('copyToClipboard', [
-            'text' => 'Page link copied to clipboard',
-            'value' => $finall
-        ]);
-        $this->redirectRoute('landingpages.index');
+            $this->redirectRoute('landingpages.index');
+        }catch(\Throwable $e){
+            $connectionName = Connection::whereIn('id',$this->connection_ids)->pluck('name')->toArray();
+            session()->flash('message', 'Domain not connected '.implode(',', $connectionName).'');
+        }
     }
 
     public function getCurrentToollProperty(){
 
        return Tools::current();
+    }
+
+    public function updatedSelectAll($value){
+
+        if($value){
+            $this->connection_ids = Connection::byTool(Tools::LANDING_PAGE)->pluck('id')->toArray();
+        }else{
+            $this->connection_ids = [];
+        }
+        
     }
 
 

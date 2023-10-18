@@ -39,6 +39,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
     Route::get('testconnection', [\App\Http\Controllers\GmailConnectionController::class, 'testconnection']);
     Route::get('refreshtoken', [\App\Http\Controllers\GmailConnectionController::class, 'refreshtoken']);
     Route::get('multiplecheck', [\App\Http\Controllers\GmailConnectionController::class, 'getcheckedvalue']);
+    Route::get('deleteSelectedGmailconnection', [\App\Http\Controllers\GmailConnectionController::class, 'deleteSelectedGmailconnection']);
     Route::get('multiProxycheck', [\App\Http\Controllers\GmailConnectionController::class, 'getproxycheckedvalue']);
     Route::get('gmailconnection_import', [\App\Http\Controllers\GmailConnectionController::class,'import']);
     Route::get('createdgroups', [\App\Http\Controllers\GroupsController::class,'selectgroup']);
@@ -132,4 +133,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
 
     //add query params in syndication
     Route::get('getqueryparams', [\App\Http\Controllers\SyndicationController::class, 'getqueryparams']);
+
+    //Event Placeholders
+    Route::resource('eventplaceholders', \App\Http\Controllers\EventPlaceholderController::class)->only(['index', 'create','edit']);
 });

@@ -87,7 +87,7 @@ class Event extends Model
 
     public function getActionsPerformedAttribute()
     {
-         $all_lists = DB::table('event_event_listing')
+        $all_lists = DB::table('event_event_listing')
                     ->leftjoin('event as e','e.id','=','event_event_listing.event_id')
                     ->where('event_id',$this->id)
                     ->pluck('event_listing_id')

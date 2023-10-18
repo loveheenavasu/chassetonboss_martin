@@ -15,7 +15,8 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <a href="{{ route('eventlistings.show', ['eventlisting' => $listing->id]) }}" target="_blank">{{ $listing->name }}</a>
-                                <small class="text-gray-400 ml-2">Emails total: {{ $listing->emails()->count() }}, in pool: {{ $listing->emails()->wherePivot('in_pool', true)->count() }}</small>
+                                <small class="text-gray-400 ml-2">Emails total: {{ $listing->countallemails() }}, in pool: {{ $listing->countallemailsinpoll() }}</small>
+
                             </div>
 
                             <div class="flex items-center">

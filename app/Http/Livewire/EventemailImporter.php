@@ -4,12 +4,13 @@ namespace App\Http\Livewire;
 use App\Models\EventListing;
 use App\Models\EventEmail;
 use App\Models\EventEmailInfo;
+use App\Models\EventPlaceholder;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use League\Csv\Reader;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-;
+
 
 class EventemailImporter extends Component
 {
@@ -101,9 +102,31 @@ class EventemailImporter extends Component
 
     public function columnValues(): array
     {
-        return [
-            'email' => 'Email',
-        ] + EventEmailInfo::typeOptions();
+        $list_placeholder =[];
+        $data =EventPlaceholder::get();
+        if(!empty($data)){
+            foreach($data as $place){
+                $list_placeholder[] = $place['name'];
+            }
+            $final_placeholder = collect($list_placeholder)->mapWithKeys(function ($item) {
+                return [Str::snake($item) => $item];
+            })->toArray();
+        }
+        if($final_placeholder){
+            return [
+                'email' => 'Email',
+            ] + $final_placeholder;
+        }
+        else{
+            return [
+                'email' => 'Email'
+            ];
+        }
+
+
+        // return [
+        //     'email' => 'Email',
+        // ] + EventEmailInfo::typeOptions();
     }
 
     public function import(): void

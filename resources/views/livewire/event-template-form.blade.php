@@ -23,14 +23,9 @@
         <div class="col-span-3" wire:ignore>
             <p class="mt-3 text-sm text-gray-600">{{ __('Available placeholders for content') }}:</p>
             <ul class="place">
-                <li class="eventplaceholder" >*First name*</li>
-                <li class="eventplaceholder">*Last name*</li>
-                <li class="eventplaceholder">*Company*</li>
-                <li class="eventplaceholder">*Website*</li>
-                <li class="eventplaceholder">*City*</li>
-                <li class="eventplaceholder">*State*</li>
-                <li class="eventplaceholder">*Profession*</li>
-                <li class="eventplaceholder">*Source*</li>
+            @foreach($this->eventplaceholders as $eventplaceholder)
+                <li class="eventplaceholder" >{{ $eventplaceholder->name }}</li>
+            @endforeach 
             </ul>
         </div>
         <div class="col-span-3" wire:ignore>
