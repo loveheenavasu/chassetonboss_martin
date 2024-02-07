@@ -11,6 +11,7 @@ class Tools
     const EVENT_CALENDER = 'event_calender';
     const LEAD_VALIDATOR = 'leadvalidator';
     const LANDING_PAGE = 'landingpage';
+    const TYPOGENERATOR = 'typogenerator';
 
 
 
@@ -22,7 +23,8 @@ class Tools
             self::DRIP_FEED,
             self::CUTTER,
             self::EVENT_CALENDER,
-            self::LANDING_PAGE
+            self::LANDING_PAGE,
+            self::TYPOGENERATOR
         ];
     }
 

@@ -136,4 +136,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () use ($to) {
 
     //Event Placeholders
     Route::resource('eventplaceholders', \App\Http\Controllers\EventPlaceholderController::class)->only(['index', 'create','edit']);
+
+    // Typo Generator
+    Route::get('typogenerator', [\App\Http\Controllers\TypogeneratorController::class, 'index'])->name('typogenerator.index');
 });

@@ -111,7 +111,7 @@ class Navigation extends NavigationDropdown
                     ]
                 ];
                 break;
-                case Tools::LEAD_VALIDATOR:
+            case Tools::LEAD_VALIDATOR:
                 $links = [
                     [
                         'href' => route('leadvalidator.index'),
@@ -135,7 +135,7 @@ class Navigation extends NavigationDropdown
                     ]
                 ];
                 break;
-                case Tools::EVENT_CALENDER:
+            case Tools::EVENT_CALENDER:
                 $links = [
                    
                     [
@@ -186,8 +186,8 @@ class Navigation extends NavigationDropdown
                     
 
                 ];
-                break;
-                case Tools::LANDING_PAGE:
+
+            case Tools::LANDING_PAGE:
                 $links = [
                     [
                         'href' => route('connections.index'),
@@ -216,6 +216,16 @@ class Navigation extends NavigationDropdown
                     ]
                 ];
                 break;
+            
+            case Tools::TYPOGENERATOR:
+                $links = [
+                    [
+                        'href' => route('typogenerator.index'),
+                        'label' => __('Typo Generator'),
+                        'active' => request()->routeIs('typogenerator.*')
+                    ]
+                ];
+            break;
             default:
                 $links = [];
                 break;
@@ -252,6 +262,10 @@ class Navigation extends NavigationDropdown
             [
                 'key' => 'landingpage',
                 'label' => 'Landing Page 3.0'
+            ],
+            [
+                'key' => 'typogenerator',
+                'label' => 'Typo Generator'
             ],
         ];
     }

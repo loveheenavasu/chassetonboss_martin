@@ -69,7 +69,9 @@
                                             {{ $rule->listings->pluck('name')->implode(', ') }}
                                         </td>
                                         <td class="px-4 py-2 whitespace-nowrap text-sm">
-                                            {{ $rule->connection->name }}
+                                            @if(isset($rule->connection->name))
+                                                {{ $rule->connection->name }}
+                                            @endif
                                         </td>
                                         <td class="px-4 py-2 whitespace-nowrap text-sm">
                                             {{ $rule->emails_count }}
